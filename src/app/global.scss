@@ -1,8 +1,9 @@
 @use "../styles/reset" as reset;
 @use "../styles/font-sizes" as fontSizes;
+@use "../styles/colors" as colors;
 
 body {
-  color: hsl(224, 20%, 41%);
+  color: colors.$primary;
   font-size: 16px;
 }
 
@@ -12,6 +13,6 @@ h3,
 h4,
 h5,
 h6 {
-  color: hsl(220, 58%, 31%);
+  color: colors.$heading;
   font-family: var(--font-sen);
 }
