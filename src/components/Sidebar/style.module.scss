@@ -94,3 +94,74 @@
   margin: 40px 30px;
   font-size: font.$size-xs;
 }
+
+@media screen and (max-width: $screen-md) {
+  .Sidebar {
+    position: fixed;
+    top: 7.5rem;
+    left: 10px;
+    z-index: 1;
+    padding: 0;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    box-shadow: none;
+
+    & > .child {
+      display: none;
+      max-height: calc(100vh - 10rem);
+      padding: 10px 0;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 5px 20px 0 rgba(black, 4%);
+      width: 283px;
+      border: 1px solid rgba(black, 10%);
+    }
+
+    .sidebarIcon {
+      display: flex;
+      width: 48px;
+      height: 48px;
+    }
+
+    .SidebarAction,
+    .SidebarLink {
+      margin: 5px 0;
+    }
+
+    .SidebarSection {
+      .SidebarAction,
+      .SidebarLink {
+        margin: 0;
+      }
+    }
+  }
+
+  .Sidebar.open {
+    & > .child {
+      display: block;
+    }
+  }
+
+  .SidebarSection {
+    & > .child {
+      display: none;
+
+      &.open {
+        display: block;
+      }
+    }
+
+    & > h3::after {
+      content: "?";
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
