@@ -1,0 +1,93 @@
+@use "@/styles/breakpoints" as *;
+@use "@/styles/font-sizes" as font;
+@use "@/styles/colors" as color;
+
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 1rem;
+}
+
+.illustrationContainer,
+.formContainer {
+  padding: 1rem;
+  flex: 1;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+// TODO show illustration on mobile
+
+.illustrationContainer {
+  display: none;
+}
+
+.formContainer {
+  form {
+    width: 100%;
+    max-width: 480px;
+
+    h1 {
+      font-weight: 700;
+      letter-spacing: -0.04rem;
+      font-size: font.$size-40;
+      text-shadow: 0 0 4px 0;
+    }
+  }
+}
+
+.compoundIcon {
+  margin-bottom: 1rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 60px 0 30px 0;
+}
+
+.forgotPassword {
+  color: color.$secondary;
+  font-family: var(--font-avenir-next);
+  text-transform: uppercase;
+  font-size: font.$size-xs;
+  font-weight: 600;
+}
+
+@include respond-to(lg) {
+  .loginPage {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .illustrationContainer {
+    flex: 1;
+    display: flex;
+
+    img {
+      flex-shrink: 0;
+    }
+  }
+
+  .formContainer {
+    box-shadow: 0 15px 90px 0 rgba(black, 3%);
+    padding: 100px;
+    justify-content: flex-start;
+  }
+
+  .compoundIcon {
+    position: absolute;
+    top: 10vh;
+    left: 6.7vw;
+  }
+}
