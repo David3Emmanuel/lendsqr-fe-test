@@ -1,0 +1,62 @@
+@use "@/styles/colors" as color;
+@use "@/styles/font-sizes" as font;
+
+.Input {
+  border: 2px solid rgba(color.$primary, 15%);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+
+  input {
+    color: color.$primary;
+    flex: 1;
+    font-size: font.$size-sm;
+    padding: 1rem;
+
+    &::placeholder {
+      color: rgba(color.$primary, 60%);
+    }
+  }
+}
+
+.togglePasswordButton {
+  color: color.$secondary;
+  text-transform: uppercase;
+  font-size: font.$size-xs;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  padding: 1rem;
+  font-family: var(--font-avenir-next);
+
+  &:hover {
+    color: color.$secondary-hover;
+  }
+}
+
+.searchInput {
+  border: none;
+  border-radius: 0;
+  overflow: auto;
+
+  input {
+    border: 2px solid rgba(color.$primary, 15%);
+    border-right: 0;
+    border-radius: 8px 0 0 8px;
+  }
+}
+
+.searchButton {
+  color: white;
+  background-color: color.$secondary;
+  padding: 1rem;
+  border-radius: 0 8px 8px 0;
+  font-weight: 600;
+  font-size: font.$size-xs;
+  width: 56px;
+
+  &:hover {
+    background-color: color.$secondary-hover;
+  }
+}
