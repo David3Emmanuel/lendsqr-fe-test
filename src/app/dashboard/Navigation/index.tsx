@@ -8,6 +8,8 @@ import {
 import { Logout, SwitchOrganization } from './navActions'
 
 export default function Navigation() {
+  // TODO add optional dropdown to sidebar action
+
   return (
     <Sidebar>
       <SwitchOrganization />

@@ -3,16 +3,23 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+import style from './style.module.scss'
 import { useState } from 'react'
-import Button from '../Button'
+import Button from '@/components/Button'
 
 export function Sidebar({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
+  // TODO hide sidebar onblur
 
   return (
-    <nav>
-      <Button onClick={() => setOpen((prev) => !prev)}>?</Button>
-      <div>{children}</div>
+    <nav className={`${style.Sidebar} ${open ? style.open : ''}`}>
+      <Button
+        className={style.sidebarIcon}
+        onClick={() => setOpen((prev) => !prev)}
+      >
+        ?
+      </Button>
+      <div className={style.child}>{children}</div>
     </nav>
   )
 }
@@ -29,19 +36,23 @@ export function SidebarSection({
   const [open, setOpen] = useState(isDefault)
 
   return (
-    <div>
-      <h3 onClick={() => setOpen((prev) => !prev)}>{title}</h3>
-      <div>{children}</div>
+    <div className={style.SidebarSection}>
+      <h3 className={style.title} onClick={() => setOpen((prev) => !prev)}>
+        {title}
+      </h3>
+      <div className={`${style.child} ${open ? style.open : ''}`}>
+        {children}
+      </div>
     </div>
   )
 }
 
 export function SidebarDivider() {
-  return <div />
+  return <div className={style.SidebarDivider} />
 }
 
 export function SidebarFooter({ children }: { children: React.ReactNode }) {
-  return <p>{children}</p>
+  return <p className={style.SidebarFooter}>{children}</p>
 }
 
 export function SidebarAction({
@@ -56,10 +67,10 @@ export function SidebarAction({
   trailingIcon?: string
 }) {
   return (
-    <button onClick={onClick}>
-      <span>?</span>
+    <button className={style.SidebarAction} onClick={onClick}>
+      <span className={style.icon}>?</span>
       <h2>{title}</h2>
-      {trailingIcon && <span>?</span>}
+      {trailingIcon && <span className={style.icon}>?</span>}
     </button>
   )
 }
@@ -79,10 +90,13 @@ export function SidebarLink({
   const isActive = pathname === href
 
   return (
-    <Link href={href}>
-      <span>?</span>
+    <Link
+      className={`${style.SidebarLink} ${isActive ? style.active : ''}`}
+      href={href}
+    >
+      <span className={style.icon}>?</span>
       <h2>{title}</h2>
-      {trailingIcon && <span>?</span>}
+      {trailingIcon && <span className={style.icon}>?</span>}
     </Link>
   )
 }

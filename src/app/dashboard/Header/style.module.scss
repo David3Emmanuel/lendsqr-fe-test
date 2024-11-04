@@ -41,6 +41,16 @@
   display: none;
 }
 
+@include respond-to(xs) {
+  .Header {
+    .CompoundIcon {
+      h1 {
+        display: block;
+      }
+    }
+  }
+}
+
 @include respond-to(sm) {
   .headerContainer {
     padding: 30px;
