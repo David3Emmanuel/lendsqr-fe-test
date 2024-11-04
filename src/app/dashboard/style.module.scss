@@ -1,0 +1,17 @@
+.DashboardLayout {
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard {
+  display: flex;
+  flex: 1;
+  width: 100%;
+
+  main {
+    flex: 1;
+    padding: 60px;
+  }
+}

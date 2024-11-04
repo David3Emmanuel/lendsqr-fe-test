@@ -1,0 +1,94 @@
+@use "@/styles/breakpoints" as *;
+
+.Header {
+  display: flex;
+  align-items: center;
+  box-shadow: 3px 0 20px 0 rgba(black, 4%);
+
+  .CompoundLogo {
+    padding-left: 1rem;
+    h1 {
+      display: none;
+    }
+  }
+
+  .Input {
+    max-width: 400px;
+    display: none;
+  }
+
+  .Profile h2 {
+    display: none;
+  }
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+  gap: 10px;
+  flex: 1;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.docs {
+  display: none;
+}
+
+@include respond-to(sm) {
+  .headerContainer {
+    padding: 30px;
+    justify-content: space-between;
+  }
+
+  .Header {
+    .CompoundLogo {
+      h1 {
+        display: block;
+      }
+    }
+
+    .Input {
+      display: flex;
+    }
+  }
+}
+
+@include respond-to(md) {
+  .Header {
+    .Profile h2 {
+      display: block;
+    }
+
+    .CompoundLogo h1 {
+      display: none;
+    }
+  }
+
+  .docs {
+    display: block;
+  }
+}
+
+@include respond-to(lg) {
+  .Header {
+    .CompoundLogo {
+      width: 283px;
+      padding-left: 30px;
+
+      h1 {
+        display: block;
+      }
+    }
+  }
+
+  .headerContainer {
+    padding: 30px 45px;
+  }
+}
