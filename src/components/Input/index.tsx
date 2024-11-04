@@ -6,9 +6,11 @@ import styles from './style.module.scss'
 export default function Input({
   type,
   placeholder,
+  className,
 }: {
   type: React.HTMLInputTypeAttribute
   placeholder: string
+  className?: string
 }) {
   const [showPassword, setShowPassword] = useState(false)
 
@@ -16,7 +18,7 @@ export default function Input({
 
   return (
     <div
-      className={`${styles.Input} ${
+      className={`${styles.Input} ${className || ''} ${
         type == 'search' ? styles.searchInput : ''
       }`}
     >
