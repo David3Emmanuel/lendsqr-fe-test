@@ -8,7 +8,6 @@
 .Sidebar {
   height: 100%;
   max-height: 100%;
-  padding: 10px 0;
   box-shadow: 0 5px 20px 0 rgba(black, 4%);
   display: flex;
 
@@ -17,6 +16,7 @@
   }
 
   & > .child {
+    padding: 10px 0;
     height: 100%;
     overflow-y: auto;
     width: 283px;
@@ -95,7 +95,7 @@
   font-size: font.$size-xs;
 }
 
-@media screen and (max-width: $screen-md) {
+@media screen and (max-width: $screen-xl) {
   .Sidebar {
     position: fixed;
     top: 7.5rem;
