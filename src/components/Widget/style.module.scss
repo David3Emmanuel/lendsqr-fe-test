@@ -1,0 +1,99 @@
+@use "@/styles/colors" as color;
+@use "@/styles/font-sizes" as font;
+@use "@/styles/breakpoints" as *;
+
+.Widget {
+  width: 100%;
+  display: flex;
+  padding: 10px 2rem;
+  background-color: white;
+  position: relative;
+  align-items: center;
+  gap: 1rem;
+
+  &:not(:last-child)::after {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    background-color: rgba(color.$heading, 15%);
+    display: block;
+  }
+}
+
+.WidgetGroup {
+  margin: 10px 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  border: 1px solid rgba(color.$heading, 6%);
+  border-radius: 4px;
+  box-shadow: 3px 5px 20px 0 rgba(black, 4%);
+}
+
+.WidgetIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(color.$primary, 6%);
+}
+
+.WidgetTitle {
+  color: color.$primary;
+  font-size: font.$size-sm;
+  font-weight: 500;
+  font-family: var(--font-work-sans);
+  text-transform: uppercase;
+  flex: 1;
+}
+
+.WidgetSummary {
+  font-family: var(--font-work-sans);
+  font-size: font.$size-2xl;
+  font-weight: 600;
+}
+
+@include respond-to(lg) {
+  .Widget {
+    width: 240px;
+    height: 160px;
+    flex-shrink: 0;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    padding-top: 20px;
+
+    border: 1px solid rgba(color.$heading, 6%);
+    border-radius: 4px;
+    box-shadow: 3px 5px 20px 0 rgba(black, 4%);
+
+    &::after {
+      display: none !important;
+    }
+  }
+
+  .WidgetGroup {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 1rem 0;
+
+    justify-content: space-between;
+    gap: 10px;
+  }
+}
+
+@include respond-to(xl) {
+  .WidgetGroup {
+    margin: 40px 0;
+  }
+}
