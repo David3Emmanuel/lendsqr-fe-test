@@ -24,19 +24,32 @@ export default function TableData({
   type: ColumnType
   value: string | number | Date | Pill
 }) {
-  if (type === 'string') return <td>{value as string}</td>
-  if (type === 'number') return <td>{value as number}</td>
-  if (type === 'date') return <td>{formatDate(value as Date)}</td>
-
-  if (type === 'pill') {
-    const pill = value as Pill
-
-    return (
-      <td>
+  let content
+  switch (type) {
+    case 'string':
+      content = value as string
+      break
+    case 'number':
+      content = value as number
+      break
+    case 'date':
+      content = formatDate(value as Date)
+      break
+    case 'pill':
+      const pill = value as Pill
+      content = (
         <span className={`${style.pill} ${style[pill.color]}`}>
           {pill.text}
         </span>
-      </td>
-    )
+      )
+      break
+    default:
+      content = null
   }
+
+  return (
+    <div className={style.td} role='cell'>
+      {content}
+    </div>
+  )
 }

@@ -15,17 +15,23 @@ export function Table<T extends Row>({
 }) {
   return (
     <div className={style.Table}>
-      <table>
-        <thead>
-          <tr>
+      <div className={style.table} role='table'>
+        <div className={style.thead} role='rowgroup'>
+          <div className={style.tr} role='row'>
             {columns.map((column) => (
-              <th key={column.key.toString()}>{column.title}</th>
+              <div
+                className={style.th}
+                key={column.key.toString()}
+                role='columnheader'
+              >
+                {column.title}
+              </div>
             ))}
-          </tr>
-        </thead>
-        <tbody>
+          </div>
+        </div>
+        <div className={style.tbody} role='rowgroup'>
           {data.map((row, index) => (
-            <tr key={index}>
+            <div className={style.tr} key={index} role='row'>
               {columns.map((column) => (
                 <TableData
                   key={column.key.toString()}
@@ -33,10 +39,10 @@ export function Table<T extends Row>({
                   value={row[column.key]}
                 />
               ))}
-            </tr>
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   )
 }
