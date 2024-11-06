@@ -1,6 +1,11 @@
 import { Pill, Column, Row } from '@/components/Table/types'
 import UsersWidgets from './widgets'
 import { Table } from '@/components/Table'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Users',
+}
 
 interface UserRow extends Row {
   organization: string

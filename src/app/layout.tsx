@@ -1,6 +1,14 @@
 import Script from 'next/script'
 import './global.scss'
 import { Sen, Work_Sans } from 'next/font/google'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: {
+    default: 'Lendsqr',
+    template: '%s | Lendsqr',
+  },
+}
 
 const sen = Sen({
   weight: ['400', '700'],

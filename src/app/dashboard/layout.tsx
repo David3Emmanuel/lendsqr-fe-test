@@ -3,6 +3,10 @@ import Navigation from './Navigation'
 
 import style from './style.module.scss'
 
+export const metadata = {
+  title: 'Overview',
+}
+
 export default function DashboardLayout({
   children,
 }: {
