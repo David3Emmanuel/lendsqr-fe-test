@@ -1,10 +1,22 @@
-import { Pill, Column, Row } from '@/components/Table/types'
+import { Pill, PillColor, Column, Row } from '@/components/Table/types'
 import UsersWidgets from './widgets'
 import { Table } from '@/components/Table'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Users',
+}
+
+// TODO revalidate every minute
+
+interface UserData {
+  email: string
+  phone: string
+  status: string
+  username: string
+  firstName: string
+  dateJoined: string
+  organization: string
 }
 
 interface UserRow extends Row {
@@ -14,6 +26,13 @@ interface UserRow extends Row {
   phone: string
   dateJoined: Date
   status: Pill
+}
+
+const statusColors: { [key: string]: PillColor } = {
+  active: 'green',
+  inactive: 'neutral',
+  pending: 'yellow',
+  blacklisted: 'red',
 }
 
 const columns: Column<UserRow>[] = [
@@ -26,26 +45,28 @@ const columns: Column<UserRow>[] = [
 ]
 
 export default async function UsersPage() {
-  // TODO fetch from API
+  // TODO handle loading and error states
 
-  const rows: UserRow[] = [
+  const users: UserData[] = await fetch(
+    'https://api.json-generator.com/templates/5bz8P30FEwn8/data',
     {
-      organization: 'Lendsqr',
-      username: 'Adedeji',
-      email: 'adedeji@lendsqr.com',
-      phone: '08078903721',
-      dateJoined: new Date(2020, 5, 15, 10),
-      status: { color: 'neutral', text: 'Inactive' },
+      headers: {
+        Authorization: `Bearer ${process.env.JSON_GENERATOR_TOKEN}`,
+      },
     },
-    {
-      organization: 'Irorun',
-      username: 'Debby Ogana',
-      email: 'debby2@irorun.com',
-      phone: '08160780928',
-      dateJoined: new Date(2020, 6, 30, 10),
-      status: { color: 'yellow', text: 'Pending' },
+  ).then((response) => response.json())
+
+  const rows: UserRow[] = users.map((user) => ({
+    organization: user.organization,
+    username: user.username,
+    email: user.email,
+    phone: user.phone,
+    dateJoined: new Date(user.dateJoined),
+    status: {
+      text: user.status,
+      color: statusColors[user.status.toLowerCase()],
     },
-  ]
+  }))
 
   return (
     <div>
