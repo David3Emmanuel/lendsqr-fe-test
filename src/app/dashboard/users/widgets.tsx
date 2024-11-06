@@ -25,7 +25,7 @@ export default function UsersWidgets() {
         <WidgetSummary>12,453</WidgetSummary>
       </Widget>
       <Widget>
-        <WidgetIcon icon='coins' color='red2ss' />
+        <WidgetIcon icon='coins' color='red2' />
         <WidgetTitle>Users with Savings</WidgetTitle>
         <WidgetSummary>102,453</WidgetSummary>
       </Widget>
