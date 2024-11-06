@@ -10,22 +10,22 @@ export default function UsersWidgets() {
   return (
     <WidgetGroup>
       <Widget>
-        <WidgetIcon>people</WidgetIcon>
+        <WidgetIcon icon='user-group' color='pink' />
         <WidgetTitle>Users</WidgetTitle>
         <WidgetSummary>2,453</WidgetSummary>
       </Widget>
       <Widget>
-        <WidgetIcon>people</WidgetIcon>
+        <WidgetIcon icon='users' color='blue' />
         <WidgetTitle>Active Users</WidgetTitle>
         <WidgetSummary>2,453</WidgetSummary>
       </Widget>
       <Widget>
-        <WidgetIcon>people</WidgetIcon>
+        <WidgetIcon icon='file-contract' color='orange' />
         <WidgetTitle>Users with Loans</WidgetTitle>
         <WidgetSummary>12,453</WidgetSummary>
       </Widget>
       <Widget>
-        <WidgetIcon>people</WidgetIcon>
+        <WidgetIcon icon='coins' color='red2ss' />
         <WidgetTitle>Users with Savings</WidgetTitle>
         <WidgetSummary>102,453</WidgetSummary>
       </Widget>

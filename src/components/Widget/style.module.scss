@@ -42,7 +42,41 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(color.$primary, 6%);
+
+  &.green {
+    background-color: color.$bg-green;
+    color: color.$text-green;
+  }
+
+  &.yellow {
+    background-color: color.$bg-yellow;
+    color: color.$text-yellow;
+  }
+
+  &.red {
+    background-color: color.$bg-red;
+    color: color.$text-red;
+  }
+
+  &.red2 {
+    background-color: color.$bg-red2;
+    color: color.$text-red2;
+  }
+
+  &.pink {
+    background-color: color.$bg-pink;
+    color: color.$text-pink;
+  }
+
+  &.blue {
+    background-color: color.$bg-blue;
+    color: color.$text-blue;
+  }
+
+  &.orange {
+    background-color: color.$bg-orange;
+    color: color.$text-orange;
+  }
 }
 
 .WidgetTitle {

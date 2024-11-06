@@ -1,5 +1,7 @@
 import style from './style.module.scss'
 
+// TODO pin widgets to dashboard overview
+
 export function Widget({ children }: { children?: React.ReactNode }) {
   return <div className={style.Widget}>{children}</div>
 }
@@ -8,8 +10,18 @@ export function WidgetGroup({ children }: { children: React.ReactNode }) {
   return <div className={style.WidgetGroup}>{children}</div>
 }
 
-export function WidgetIcon({ children }: { children: React.ReactNode }) {
-  return <div className={style.WidgetIcon}>?</div>
+export function WidgetIcon({
+  icon,
+  color = 'blue',
+}: {
+  icon: string
+  color?: string
+}) {
+  return (
+    <div className={`${style.WidgetIcon} ${style[color]}`}>
+      <i className={`fa-solid fa-${icon}`} />
+    </div>
+  )
 }
 
 export function WidgetTitle({ children }: { children: React.ReactNode }) {
