@@ -8,6 +8,7 @@
   width: 100%;
   max-width: 480px;
   display: flex;
+  position: relative;
 
   input {
     color: color.$primary;
@@ -29,6 +30,11 @@
   letter-spacing: 0.1rem;
   padding: 1rem;
   font-family: var(--font-avenir-next);
+
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
 
   &:hover {
     color: color.$secondary-hover;
