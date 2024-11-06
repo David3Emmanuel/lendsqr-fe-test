@@ -2,22 +2,13 @@ import { Pill, PillColor, Column, Row } from '@/components/Table/types'
 import UsersWidgets from './widgets'
 import { Table } from '@/components/Table'
 import { Metadata } from 'next'
+import { UserData, getAllUsers } from '@/utils'
 
 export const metadata: Metadata = {
   title: 'Users',
 }
 
 // TODO revalidate every minute
-
-interface UserData {
-  email: string
-  phone: string
-  status: string
-  username: string
-  firstName: string
-  dateJoined: string
-  organization: string
-}
 
 interface UserRow extends Row {
   organization: string
@@ -47,16 +38,7 @@ const columns: Column<UserRow>[] = [
 export default async function UsersPage() {
   // TODO handle loading and error states
 
-  const users: UserData[] = await fetch(
-    'https://api.json-generator.com/templates/5bz8P30FEwn8/data',
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.JSON_GENERATOR_TOKEN}`,
-      },
-    },
-  ).then((response) => response.json())
-
-  const rows: UserRow[] = users.map((user) => ({
+  const rows: UserRow[] = (await getAllUsers()).map((user) => ({
     organization: user.organization,
     username: user.username,
     email: user.email,
