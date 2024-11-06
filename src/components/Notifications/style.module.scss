@@ -1,0 +1,17 @@
+@use "@/styles/colors" as color;
+@use "@/styles/font-sizes" as font;
+
+.Notifications {
+  button {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    i {
+      color: color.$heading;
+      font-size: font.$size-2xl;
+    }
+  }
+}

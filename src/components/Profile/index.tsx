@@ -1,4 +1,6 @@
 import style from './style.module.scss'
+import Image from 'next/image'
+import profilePic from '@/public/profile-pic.png'
 
 export default function Profile({
   expanded,
@@ -9,9 +11,13 @@ export default function Profile({
 }) {
   return (
     <div className={`${style.Profile} ${className || ''}`}>
-      <div className={style.profilePic}></div>
+      <div className={style.profilePic}>
+        <Image src={profilePic} alt='Profile Picture' />
+      </div>
       {expanded && <h2>John Doe</h2>}
-      <span>?</span>
+      <button className={style.dropdown}>
+        <i className='fa-solid fa-caret-down' />
+      </button>
     </div>
   )
 }

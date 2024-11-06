@@ -5,7 +5,7 @@ import { SidebarAction } from '@/components/Sidebar'
 export function SwitchOrganization() {
   return (
     <SidebarAction
-      icon='work'
+      icon='briefcase'
       title='Switch Organization'
       onClick={() => {}}
       trailingIcon='down'
@@ -14,5 +14,11 @@ export function SwitchOrganization() {
 }
 
 export function Logout() {
-  return <SidebarAction icon='logout' title='Logout' onClick={() => {}} />
+  return (
+    <SidebarAction
+      icon='right-from-bracket'
+      title='Logout'
+      onClick={() => {}}
+    />
+  )
 }

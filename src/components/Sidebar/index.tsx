@@ -17,7 +17,7 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
         className={style.sidebarIcon}
         onClick={() => setOpen((prev) => !prev)}
       >
-        ?
+        <i className={`fa-solid ${open ? 'fa-xmark' : 'fa-bars'}`} />
       </Button>
       <div className={style.child}>{children}</div>
     </nav>
@@ -68,9 +68,11 @@ export function SidebarAction({
 }) {
   return (
     <button className={style.SidebarAction} onClick={onClick}>
-      <span className={style.icon}>?</span>
+      <i className={`fa fa-${icon} ${style.icon}`} />
       <h2>{title}</h2>
-      {trailingIcon && <span className={style.icon}>?</span>}
+      {trailingIcon && (
+        <i className={`fa-solid fa-${trailingIcon} ${style.icon}`} />
+      )}
     </button>
   )
 }
@@ -94,9 +96,11 @@ export function SidebarLink({
       className={`${style.SidebarLink} ${isActive ? style.active : ''}`}
       href={href}
     >
-      <span className={style.icon}>?</span>
+      <i className={`fa-solid fa-${icon} ${style.icon}`} />
       <h2>{title}</h2>
-      {trailingIcon && <span className={style.icon}>?</span>}
+      {trailingIcon && (
+        <i className={`fa-solid fa-${trailingIcon} ${style.icon}`} />
+      )}
     </Link>
   )
 }

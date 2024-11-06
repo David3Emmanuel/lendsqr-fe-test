@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import './global.scss'
 import { Sen, Work_Sans } from 'next/font/google'
 
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${workSans.className} ${sen.variable}`}>
         {children}
+        <Script src='https://kit.fontawesome.com/9dc7ac5049.js' />
       </body>
     </html>
   )

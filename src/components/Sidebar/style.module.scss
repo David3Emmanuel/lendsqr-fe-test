@@ -5,6 +5,10 @@
 // TODO animations
 // TODO make sidebar resizable on desktop
 
+.icon {
+  color: color.$heading;
+}
+
 .Sidebar {
   height: 100%;
   max-height: 100%;
@@ -155,7 +159,9 @@
     }
 
     & > h3::after {
-      content: "?";
+      content: "\f078";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
       position: absolute;
       right: 0;
       top: 0;

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import styles from './style.module.scss'
+import style from './style.module.scss'
 
 export default function Input({
   type,
@@ -18,8 +18,8 @@ export default function Input({
 
   return (
     <div
-      className={`${styles.Input} ${className || ''} ${
-        type == 'search' ? styles.searchInput : ''
+      className={`${style.Input} ${className || ''} ${
+        type == 'search' ? style.searchInput : ''
       }`}
     >
       <input
@@ -29,15 +29,15 @@ export default function Input({
       {type === 'password' && (
         <button
           type='button'
-          className={styles.togglePasswordButton}
+          className={style.togglePasswordButton}
           onClick={() => setShowPassword(!showPassword)}
         >
           {showPassword ? 'Hide' : 'Show'}
         </button>
       )}
       {type === 'search' && (
-        <button type='submit' className={styles.searchButton}>
-          ?
+        <button type='submit' className={style.searchButton}>
+          <i className='fa-solid fa-magnifying-glass' />
         </button>
       )}
     </div>

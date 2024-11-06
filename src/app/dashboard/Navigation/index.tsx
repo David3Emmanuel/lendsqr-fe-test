@@ -13,57 +13,61 @@ export default function Navigation() {
   return (
     <Sidebar>
       <SwitchOrganization />
-      <SidebarLink icon='home' title='Dashboard' href='/dashboard' />
+      <SidebarLink icon='house' title='Dashboard' href='/dashboard' />
       <SidebarSection title='Customers'>
-        <SidebarLink icon='people' title='Users' href='/dashboard/users' />
-        <SidebarLink icon='people' title='Guarantors' href='/dashboard' />
-        <SidebarLink icon='money' title='Loans' href='/dashboard' />
+        <SidebarLink icon='user-group' title='Users' href='/dashboard/users' />
+        <SidebarLink icon='users' title='Guarantors' href='/dashboard' />
+        <SidebarLink icon='sack-dollar' title='Loans' href='/dashboard' />
         <SidebarLink
           icon='handshake'
           title='Decision Models'
           href='/dashboard'
         />
-        <SidebarLink icon='savings' title='Savings' href='/dashboard' />
-        <SidebarLink icon='money' title='Loan Requests' href='/dashboard' />
-        <SidebarLink icon='check' title='Whitelist' href='/dashboard' />
-        <SidebarLink icon='cross_out' title='Karma' href='/dashboard' />
+        <SidebarLink icon='piggy-bank' title='Savings' href='/dashboard' />
+        <SidebarLink
+          icon='hand-holding-dollar'
+          title='Loan Requests'
+          href='/dashboard'
+        />
+        <SidebarLink icon='user-check' title='Whitelist' href='/dashboard' />
+        <SidebarLink icon='user-xmark' title='Karma' href='/dashboard' />
       </SidebarSection>
       <SidebarSection title='Businesses'>
-        <SidebarLink icon='business' title='Organization' href='/dashboard' />
-        <SidebarLink icon='business' title='Loan Products' href='/dashboard' />
+        <SidebarLink icon='briefcase' title='Organization' href='/dashboard' />
         <SidebarLink
-          icon='business'
+          icon='hand-holding-dollar'
+          title='Loan Products'
+          href='/dashboard'
+        />
+        <SidebarLink
+          icon='building-columns'
           title='Savings Products'
           href='/dashboard'
         />
+        <SidebarLink icon='coins' title='Fees and Charges' href='/dashboard' />
+        <SidebarLink icon='right-left' title='Transactions' href='/dashboard' />
+        <SidebarLink icon='user-nurse' title='Services' href='/dashboard' />
         <SidebarLink
-          icon='business'
-          title='Fees and Charges'
-          href='/dashboard'
-        />
-        <SidebarLink icon='business' title='Transactions' href='/dashboard' />
-        <SidebarLink icon='business' title='Services' href='/dashboard' />
-        <SidebarLink
-          icon='business'
+          icon='user-gear'
           title='Service Account'
           href='/dashboard'
         />
-        <SidebarLink icon='business' title='Settlements' href='/dashboard' />
-        <SidebarLink icon='business' title='Reports' href='/dashboard' />
+        <SidebarLink icon='scroll' title='Settlements' href='/dashboard' />
+        <SidebarLink icon='chart-column' title='Reports' href='/dashboard' />
       </SidebarSection>
       <SidebarSection title='Settings'>
-        <SidebarLink icon='settings' title='Preferences' href='/dashboard' />
+        <SidebarLink icon='sliders' title='Preferences' href='/dashboard' />
         <SidebarLink
-          icon='settings'
+          icon='percent'
           title='Fees and Pricing'
           href='/dashboard'
         />
-        <SidebarLink icon='settings' title='Audit Logs' href='/dashboard' />
         <SidebarLink
-          icon='settings'
-          title='Systems Messages'
+          icon='clipboard-list'
+          title='Audit Logs'
           href='/dashboard'
         />
+        <SidebarLink icon='gear' title='Systems Messages' href='/dashboard' />
       </SidebarSection>
       <SidebarDivider />
       <Logout />
