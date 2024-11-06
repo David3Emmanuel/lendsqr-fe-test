@@ -2,7 +2,7 @@ import { Pill, PillColor, Column, Row } from '@/components/Table/types'
 import UsersWidgets from './widgets'
 import { Table } from '@/components/Table'
 import { Metadata } from 'next'
-import { UserData, getAllUsers } from '@/utils'
+import { getAllUsers } from '@/utils'
 
 export const metadata: Metadata = {
   title: 'Users',
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 // TODO revalidate every minute
 
 interface UserRow extends Row {
+  id: string
   organization: string
   username: string
   email: string
@@ -39,6 +40,7 @@ export default async function UsersPage() {
   // TODO handle loading and error states
 
   const rows: UserRow[] = (await getAllUsers()).map((user) => ({
+    id: user.id,
     organization: user.organization,
     username: user.username,
     email: user.email,
@@ -54,7 +56,7 @@ export default async function UsersPage() {
     <div>
       <h1>Users</h1>
       <UsersWidgets />
-      <Table columns={columns} data={rows} />
+      <Table columns={columns} data={rows} baseHref='/dashboard/user' />
     </div>
   )
 }

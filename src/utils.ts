@@ -25,3 +25,5 @@ export async function getUser(id: string): Promise<UserData | null> {
     const users = await getAllUsers()
     return users.find((user) => user.id === id) || null
 }
+
+// TODO cache fetches
