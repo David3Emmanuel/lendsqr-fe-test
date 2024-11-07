@@ -1,8 +1,15 @@
-import { Pill, PillColor, Column, Row } from '@/components/Table/types'
+import {
+  Pill,
+  PillColor,
+  Column,
+  Row,
+  ContextMenuItem,
+} from '@/components/Table/types'
 import UsersWidgets from './widgets'
 import { Table } from '@/components/Table'
 import { Metadata } from 'next'
 import { getAllUsers } from '@/utils'
+import { blacklistUserAction, activateUserAction } from './actions'
 
 export const metadata: Metadata = {
   title: 'Users',
@@ -36,6 +43,12 @@ const columns: Column<UserRow>[] = [
   { key: 'status', type: 'pill', title: 'Status' },
 ]
 
+const contextMenu: ContextMenuItem[] = [
+  { title: 'View Details', action: '/dashboard/user', icon: 'eye' },
+  { title: 'Blacklist User', action: blacklistUserAction, icon: 'user-xmark' },
+  { title: 'Activate User', action: activateUserAction, icon: 'user-check' },
+]
+
 export default async function UsersPage() {
   // TODO handle loading and error states
 
@@ -56,7 +69,12 @@ export default async function UsersPage() {
     <div>
       <h1>Users</h1>
       <UsersWidgets />
-      <Table columns={columns} data={rows} baseHref='/dashboard/user' />
+      <Table
+        columns={columns}
+        data={rows}
+        baseHref='/dashboard/user'
+        contextMenu={contextMenu}
+      />
     </div>
   )
 }

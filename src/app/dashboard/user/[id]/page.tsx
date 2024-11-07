@@ -56,6 +56,7 @@ export default async function UserDetailsPage({
       </Link>
       <div className={style.titleRow}>
         <h1>User Details</h1>
+        {/* TODO show actions based on user status */}
         <div className={style.actions}>
           <Button className={style.blacklist}>Blacklist User</Button>
           <Button className={style.activate}>Activate User</Button>
