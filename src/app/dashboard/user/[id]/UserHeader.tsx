@@ -15,7 +15,7 @@ export default function UserHeader({ user }: { user: UserData }) {
         </div>
         <div className={style.divider} />
         <div className={style.tier}>
-          <p>User's Tier</p>
+          <p>User&apos;s Tier</p>
           {/* TODO add stars */}
           <p>Tier {user.tier}</p>
         </div>

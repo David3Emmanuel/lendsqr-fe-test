@@ -24,9 +24,9 @@ export interface UserData {
     }
     employmentDetails: {
         levelOfEducation: string
-        employment: string | undefined
-        sector: string | undefined
-        duration: number | undefined
+        employment?: string
+        sector?: string
+        duration?: number
         monthlyIncome: {
             average: number
             rangePercent: number
@@ -34,9 +34,9 @@ export interface UserData {
         loanRepayment: number
     }
     socials: {
-        twitter: string | undefined
-        instagram: string | undefined
-        facebook: string | undefined
+        twitter?: string
+        instagram?: string
+        facebook?: string
     }
     guarantors: {
         fullName: string
@@ -58,16 +58,17 @@ export async function getAllUsers(): Promise<UserData[]> {
     const users: UserData[] = await response.json()
 
     users.forEach((user) => {
-        user.socials = {
-            twitter:
-                user.socials.twitter ||
-                `@${user.firstName.toLowerCase()}_${user.lastName.toLowerCase()}`,
-            instagram:
-                user.socials.instagram ||
-                `@${user.firstName.toLowerCase()}_${user.lastName.toLowerCase()}`,
-            facebook:
-                user.socials.facebook || `${user.firstName} ${user.lastName}`,
-        }
+        if (user.socials.twitter)
+            user.socials.twitter = `@${user.firstName.toLowerCase()}_${user.lastName.toLowerCase()}`
+        else delete user.socials.twitter
+
+        if (user.socials.instagram)
+            user.socials.instagram = `@${user.firstName.toLowerCase()}_${user.lastName.toLowerCase()}`
+        else delete user.socials.instagram
+
+        if (user.socials.facebook)
+            user.socials.facebook = `${user.firstName} ${user.lastName}`
+        else delete user.socials.facebook
     })
 
     return users

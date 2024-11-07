@@ -64,7 +64,7 @@ export function TabContent({
   tab: string
 }) {
   const { activeTab } = useTabContext()
-  return activeTab === tab ? <div>{children}</div> : null
+  return activeTab === tab ? children : null
 }
 
 export { TabProvider } from './TabContext'
