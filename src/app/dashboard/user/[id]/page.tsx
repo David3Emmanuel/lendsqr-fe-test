@@ -1,7 +1,22 @@
-import { getUser, UserData } from '@/utils'
+import { getUser } from '@/utils'
 import Link from 'next/link'
 import style from './style.module.scss'
 import Button from '@/components/Button'
+import UserHeader from './UserHeader'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) {
+  const { id } = await params
+  const user = await getUser(id)
+
+  return {
+    title: user?.username,
+    description: `User details for ${user?.username}`,
+  }
+}
 
 export default async function UserDetailsPage({
   params,
@@ -9,7 +24,7 @@ export default async function UserDetailsPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const user: UserData | null = await getUser(id)
+  const user = await getUser(id)
 
   if (!user) return <div>User not found</div>
 
@@ -26,35 +41,7 @@ export default async function UserDetailsPage({
           <Button className={style.activate}>Activate User</Button>
         </div>
       </div>
-      <div className={style.userHeader}>
-        <div className={style.basicInfo}>
-          <div className={style.avatar}>
-            <i className='fa-solid fa-user' />
-          </div>
-          <div>
-            <h2>{user.username}</h2>
-            <p>{user.id}</p>
-          </div>
-          <div className={style.divider} />
-          <div className={style.tier}>
-            <p>User's Tier</p>
-            {/* TODO add stars */}
-            <p>Tier {user.tier}</p>
-          </div>
-          <div className={style.divider} />
-          <div className={style.bank}>
-            <h2>
-              {user.bankDetails.balance.toLocaleString(undefined, {
-                style: 'currency',
-                currency: 'NGN',
-              })}
-            </h2>
-            <h6>
-              {user.bankDetails.accountNumber}/{user.bankDetails.bankName}
-            </h6>
-          </div>
-        </div>
-      </div>
+      <UserHeader user={user} />
     </div>
   )
 }

@@ -57,8 +57,6 @@ export async function getAllUsers(): Promise<UserData[]> {
     )
     const users: UserData[] = await response.json()
 
-    console.log(users[0].personal)
-
     users.forEach((user) => {
         user.socials = {
             twitter:
