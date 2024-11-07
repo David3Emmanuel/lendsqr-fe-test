@@ -7,10 +7,10 @@ export const metadata: Metadata = {
 
 // TODO set title client-side
 
-export default function UserDetailsPage({
+export default async function UserDetailsPage({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }) {
-  return <UserDetailsPageClient id={params.id} />
+  return <UserDetailsPageClient id={(await params).id} />
 }
