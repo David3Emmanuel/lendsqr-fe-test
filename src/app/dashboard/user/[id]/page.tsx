@@ -2,8 +2,16 @@ import { getUser } from '@/utils'
 import Link from 'next/link'
 import style from './style.module.scss'
 import Button from '@/components/Button'
-import { TabContent, TabProvider } from '@/components/Tabs'
+import { TabProvider } from '@/components/Tabs'
 import UserHeader from './UserHeader'
+
+// Tab contents
+import General from './tabs/General'
+import Documents from './tabs/Documents'
+import Bank from './tabs/Bank'
+import Loans from './tabs/Loans'
+import Savings from './tabs/Savings'
+import App from './tabs/App'
 
 export async function generateMetadata({
   params,
@@ -45,24 +53,12 @@ export default async function UserDetailsPage({
       <TabProvider>
         <UserHeader user={user} />
         <div className={style.tabContent}>
-          <TabContent tab='general'>
-            <p>General Details</p>
-          </TabContent>
-          <TabContent tab='documents'>
-            <p>Documents</p>
-          </TabContent>
-          <TabContent tab='bank'>
-            <p>Bank Details</p>
-          </TabContent>
-          <TabContent tab='loans'>
-            <p>Loans</p>
-          </TabContent>
-          <TabContent tab='savings'>
-            <p>Savings</p>
-          </TabContent>
-          <TabContent tab='app'>
-            <p>App and System</p>
-          </TabContent>
+          <General user={user} />
+          <Documents user={user} />
+          <Bank user={user} />
+          <Loans user={user} />
+          <Savings user={user} />
+          <App user={user} />
         </div>
       </TabProvider>
     </div>
