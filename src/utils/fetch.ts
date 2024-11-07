@@ -1,35 +1,29 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import UserData from './UserData'
+import { useCachedFetch } from './cache'
 
 export function useAllUsers() {
-    const [users, setUsers] = useState<UserData[]>([])
-    const [loading, setLoading] = useState<boolean>(true)
-    const [error, setError] = useState<Error | null>(null)
-
-    useEffect(() => {
-        cachedFetch(
-            'https://api.json-generator.com/templates/5bz8P30FEwn8/data',
-            {
-                headers: {
-                    Authorization: `Bearer ${process.env.NEXT_PUBLIC_JSON_GENERATOR_TOKEN}`,
-                },
+    const options = useMemo(
+        () => ({
+            headers: {
+                Authorization: `Bearer ${process.env.NEXT_PUBLIC_JSON_GENERATOR_TOKEN}`,
             },
-        )
-            .then((response) => response.json())
-            .then((users: UserData[]) => {
-                setUsers(processUserData(users))
-            })
-            .catch((err) => {
-                setError(err as Error)
-            })
-            .finally(() => {
-                setLoading(false)
-            })
-    }, [])
+        }),
+        [],
+    )
 
-    return { users, loading, error }
+    const {
+        data: users,
+        loading,
+        error,
+    } = useCachedFetch<UserData[]>(
+        'https://api.json-generator.com/templates/5bz8P30FEwn8/data',
+        options,
+    )
+
+    return { users: users ? processUserData(users) : [], loading, error }
 }
 
 export function useUser(id: string) {
@@ -45,12 +39,6 @@ export function useUser(id: string) {
     }, [usersLoading, users, id])
 
     return { user, loading, error }
-}
-
-function cachedFetch(url: string, options: RequestInit) {
-    // TODO cache fetches
-
-    return fetch(url, options)
 }
 
 function processUserData(users: UserData[]): UserData[] {
