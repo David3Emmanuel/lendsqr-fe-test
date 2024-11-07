@@ -99,6 +99,20 @@
   font-size: font.$size-sm;
 }
 
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+
+  .tab {
+    color: color.$primary;
+    cursor: pointer;
+
+    &.active {
+      color: color.$secondary;
+    }
+  }
+}
+
 @include respond-to(xs) {
   .backToUsers {
     margin-left: 2.5rem;

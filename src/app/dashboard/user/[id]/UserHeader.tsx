@@ -1,4 +1,5 @@
 import { UserData } from '@/utils'
+import { Tab, TabGroup } from '@/components/Tabs'
 import style from './style.module.scss'
 
 export default function UserHeader({ user }: { user: UserData }) {
@@ -31,6 +32,31 @@ export default function UserHeader({ user }: { user: UserData }) {
           </h6>
         </div>
       </div>
+      <TabGroup
+        className={style.tabs}
+        defaultTabClassName={style.tab}
+        activeTabClassName={style.active}
+        defaultTab='general'
+      >
+        <Tab tab='general'>
+          <p>General Details</p>
+        </Tab>
+        <Tab tab='documents'>
+          <p>Documents</p>
+        </Tab>
+        <Tab tab='bank'>
+          <p>Bank Details</p>
+        </Tab>
+        <Tab tab='loans'>
+          <p>Loans</p>
+        </Tab>
+        <Tab tab='savings'>
+          <p>Savings</p>
+        </Tab>
+        <Tab tab='app'>
+          <p>App and System</p>
+        </Tab>
+      </TabGroup>
     </div>
   )
 }
