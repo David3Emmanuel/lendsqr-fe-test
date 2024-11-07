@@ -8,7 +8,7 @@ import {
 import UsersWidgets from './widgets'
 import { Table } from '@/components/Table'
 import { Metadata } from 'next'
-import { getAllUsers } from '@/utils'
+import { getAllUsers } from '@/utils/fetch'
 import { blacklistUserAction, activateUserAction } from './actions'
 
 export const metadata: Metadata = {

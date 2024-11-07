@@ -1,53 +1,7 @@
-export interface UserData {
-    email: string
-    phone: string
-    id: string
-    status: string
-    username: string
-    firstName: string
-    gender: string
-    lastName: string
-    dateJoined: string
-    organization: string
-    tier: 1 | 2 | 3
-
-    bankDetails: {
-        balance: number
-        accountNumber: string
-        bankName: string
-    }
-    personal: {
-        maritalStatus: string
-        children: number
-        residence: string
-        bvn: string
-    }
-    employmentDetails: {
-        levelOfEducation: string
-        employment?: string
-        sector?: string
-        duration?: number
-        monthlyIncome: {
-            average: number
-            rangePercent: number
-        }
-        loanRepayment: number
-    }
-    socials: {
-        twitter?: string
-        instagram?: string
-        facebook?: string
-    }
-    guarantors: {
-        fullName: string
-        email: string
-        relationship: string
-        phone: string
-    }[]
-}
+import UserData from './UserData'
 
 export async function getAllUsers(): Promise<UserData[]> {
-    const response = await fetch(
+    const response = await cachedFetch(
         'https://api.json-generator.com/templates/5bz8P30FEwn8/data',
         {
             headers: {
@@ -79,4 +33,8 @@ export async function getUser(id: string): Promise<UserData | null> {
     return users.find((user) => user.id === id) || null
 }
 
-// TODO cache fetches
+function cachedFetch(url: string, options: RequestInit) {
+    // TODO cache fetches
+
+    return fetch(url, options)
+}

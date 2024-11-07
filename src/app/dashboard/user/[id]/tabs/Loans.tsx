@@ -1,5 +1,5 @@
 import { TabContent } from '@/components/Tabs'
-import { UserData } from '@/utils'
+import UserData from '@/utils/UserData'
 
 export default function Loans({}: { user: UserData }) {
   return (

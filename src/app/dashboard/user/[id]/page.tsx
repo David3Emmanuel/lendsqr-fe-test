@@ -1,4 +1,4 @@
-import { getUser } from '@/utils'
+import { getUser } from '@/utils/fetch'
 import Link from 'next/link'
 import style from './style.module.scss'
 import Button from '@/components/Button'

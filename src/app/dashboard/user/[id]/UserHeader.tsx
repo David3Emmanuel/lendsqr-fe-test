@@ -1,4 +1,4 @@
-import { UserData } from '@/utils'
+import UserData from '@/utils/UserData'
 import { Tab, TabGroup } from '@/components/Tabs'
 import style from './style.module.scss'
 

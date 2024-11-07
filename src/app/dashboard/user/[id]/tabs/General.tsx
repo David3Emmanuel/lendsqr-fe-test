@@ -1,5 +1,5 @@
 import { TabContent } from '@/components/Tabs'
-import { UserData } from '@/utils'
+import UserData from '@/utils/UserData'
 import style from '../style.module.scss'
 
 export default function General({ user }: { user: UserData }) {
