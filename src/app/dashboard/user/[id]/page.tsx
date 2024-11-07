@@ -35,7 +35,18 @@ export default async function UserDetailsPage({
   const { id } = await params
   const user = await getUser(id)
 
-  if (!user) return <div>User not found</div>
+  if (!user)
+    return (
+      <div>
+        <Link href='/dashboard/users' className={style.backToUsers}>
+          <i className='fa-solid fa-arrow-left' />
+          Back to Users
+        </Link>
+        <div className={style.titleRow}>
+          <h1>User not Found</h1>
+        </div>
+      </div>
+    )
 
   return (
     <div>
