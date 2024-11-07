@@ -6,19 +6,13 @@ export default function Button({
   children,
   className,
   onClick,
-  ...innerProps
 }: {
   children: React.ReactNode
   className?: string
   onClick?: () => void
-  [key: string]: any
 }) {
   return (
-    <button
-      className={`${style.Button} ${className || ''}`}
-      onClick={onClick}
-      {...innerProps}
-    >
+    <button className={`${style.Button} ${className || ''}`} onClick={onClick}>
       {children}
     </button>
   )

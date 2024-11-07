@@ -23,7 +23,14 @@ export function TabGroup({
     setDefaultTabClassName(defaultTabClassName)
     setActiveTabClassName(activeTabClassName)
     setActiveTab(defaultTab || '')
-  }, [])
+  }, [
+    activeTabClassName,
+    defaultTab,
+    defaultTabClassName,
+    setActiveTab,
+    setActiveTabClassName,
+    setDefaultTabClassName,
+  ])
 
   return <div className={className}>{children}</div>
 }
