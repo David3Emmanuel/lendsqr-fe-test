@@ -1,6 +1,7 @@
 import { TabContent } from '@/components/Tabs'
 import UserData from '@/utils/UserData'
 import style from '../style.module.scss'
+import { Fragment } from 'react'
 
 export default function General({ user }: { user: UserData }) {
   return (
@@ -56,7 +57,7 @@ function Socials({ socials }: { socials: Record<string, string> }) {
     <h2>No socials linked</h2>
   ) : (
     socialsArray.map(([platform, username], i) => (
-      <>
+      <Fragment key={i}>
         <h2>Socials</h2>
         <div key={i} className={style.row}>
           <div>
@@ -64,7 +65,7 @@ function Socials({ socials }: { socials: Record<string, string> }) {
             <p>{username}</p>
           </div>
         </div>
-      </>
+      </Fragment>
     ))
   )
 }
@@ -76,8 +77,8 @@ function Guarantors({ guarantors }: { guarantors: UserData['guarantors'] }) {
     <>
       <h2>Guarantors</h2>
       {guarantors.map((guarantor, i) => (
-        <>
-          <div key={i} className={style.row}>
+        <Fragment key={i}>
+          <div className={style.row}>
             <div>
               <h3>Full Name</h3>
               <p>{guarantor.fullName}</p>
@@ -96,7 +97,7 @@ function Guarantors({ guarantors }: { guarantors: UserData['guarantors'] }) {
             </div>
           </div>
           {i < guarantors.length - 1 && <div className={style.divider} />}
-        </>
+        </Fragment>
       ))}
     </>
   )
@@ -120,7 +121,9 @@ function EmploymentDetails({
   const currencyOptions: Intl.NumberFormatOptions = {
     style: 'currency',
     currency: 'NGN',
+    currencyDisplay: 'narrowSymbol', // Use narrowSymbol to display the naira symbol
   }
+
   const monthlyIncome = `${min.toLocaleString(
     undefined,
     currencyOptions,

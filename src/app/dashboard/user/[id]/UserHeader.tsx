@@ -25,6 +25,7 @@ export default function UserHeader({ user }: { user: UserData }) {
             {user.bankDetails.balance.toLocaleString(undefined, {
               style: 'currency',
               currency: 'NGN',
+              currencyDisplay: 'narrowSymbol',
             })}
           </h2>
           <h6>
