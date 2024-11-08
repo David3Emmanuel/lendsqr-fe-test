@@ -1,13 +1,15 @@
 @use "@/styles/font-sizes" as font;
 @use "@/styles/colors" as color;
+@use "@/styles/breakpoints" as *;
 
 .Pagination {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   margin: 20px 0;
+  gap: 10px;
 
   .count * {
     font-size: font.$size-sm;
@@ -63,5 +65,11 @@
         opacity: 60%;
       }
     }
+  }
+}
+
+@include respond-to(sm) {
+  .Pagination {
+    justify-content: space-between;
   }
 }

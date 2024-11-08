@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { Pagination, usePagination } from './Pagination'
 
 // TODO add sorting
+// TODO show/hide columns
 
 export function Table<T extends Row>({
   columns,
