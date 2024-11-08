@@ -27,7 +27,7 @@ export function TableRow<T extends Row>({
 
     event.preventDefault()
     setContextMenuVisible(true)
-    setContextMenuPosition({ x: event.clientX - 10, y: event.clientY - 10 })
+    setContextMenuPosition({ x: event.clientX, y: event.clientY })
   }
 
   const handleCloseContextMenu = () => setContextMenuVisible(false)

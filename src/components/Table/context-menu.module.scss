@@ -2,10 +2,12 @@
 @use "@/styles/font-sizes" as font;
 
 .ContextMenu {
+  position: fixed;
+  z-index: 10;
+
   background-color: white;
   border: 1px solid rgba(color.$primary, 4%);
   border-radius: 4px;
-  z-index: 10;
   box-shadow: 3px 5px 20px 0px rgba(black, 4%);
 
   display: flex;

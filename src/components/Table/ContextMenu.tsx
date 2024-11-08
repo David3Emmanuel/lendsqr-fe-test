@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { ContextMenuItem } from './types'
 import Link from 'next/link'
 
@@ -54,29 +54,15 @@ export function ContextMenu({
   }, [onClose, isOpen])
 
   useEffect(() => {
-    if (menuRef.current && position) {
-      const rect = menuRef.current.getBoundingClientRect()
-      const viewportWidth = window.innerWidth
-
-      if (rect.right > viewportWidth) {
-        menuRef.current.style.left = `${viewportWidth - rect.width}px`
-      }
-      if (rect.left < 0) {
-        menuRef.current.style.left = `0px`
-      }
-    }
-  }, [position, isOpen])
+    if (!position || !menuRef.current) return
+    const left = position.x - 10
+    const right = position.y - 10
+    menuRef.current.style.left = `${left}px`
+    menuRef.current.style.top = `${right}px`
+  }, [position])
 
   return (
-    <div
-      ref={menuRef}
-      style={
-        position
-          ? { top: position.y, left: position.x, position: 'absolute' }
-          : {}
-      }
-      className={style.ContextMenu}
-    >
+    <div ref={menuRef} className={style.ContextMenu}>
       {menu.map((item, index) => (
         <div
           key={index}
