@@ -1,6 +1,8 @@
+export type TableValue = string | number | Date | Pill
+
 export type Row = {
   id: string
-  [key: string]: string | number | Date | Pill
+  [key: string]: TableValue
 }
 
 export type PillColor = 'green' | 'red' | 'yellow' | 'neutral'

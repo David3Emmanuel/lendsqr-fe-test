@@ -3,14 +3,18 @@ import Input from '@/components/Input'
 import Button from '@/components/Button'
 import Select from '@/components/Select'
 import style from './filter.module.scss'
-import { Column, Row } from './types'
+import { Column, Row, TableValue } from './types'
 
 export function Filter<T extends Row>({
   column,
   hideFilter,
+  filter,
+  setFilter,
 }: {
   column: Column<T>
   hideFilter: () => void
+  filter: TableValue
+  setFilter: (value?: TableValue) => void
 }) {
   const filterRef = useRef<HTMLDivElement>(null)
 
@@ -50,46 +54,43 @@ export function Filter<T extends Row>({
       <p>{column.title}</p>
       {column.type === 'string' &&
         (column.filterMode === 'select' ? (
-          <StringFilterSelect />
+          <Select options={[]} />
         ) : (
-          <StringFilterInput title={column.title} />
+          <Input
+            placeholder={column.title}
+            type='text'
+            value={filter as string}
+            setValue={setFilter}
+          />
         ))}
       {column.type === 'number' &&
         (column.filterMode === 'select' ? (
-          <NumberFilterSelect />
+          <Select options={[]} />
         ) : (
-          <NumberFilterInput title={column.title} />
+          <Input
+            placeholder={column.title}
+            type='number'
+            value={filter.toString()}
+            setValue={(value: string) => setFilter(Number(value))}
+          />
         ))}
-      {column.type === 'date' && <DateFilter title={column.title} />}
-      {column.type === 'pill' && <PillFilter />}
+      {column.type === 'date' && (
+        <Input
+          placeholder={column.title}
+          type='date'
+          value={
+            filter ? (filter as Date).toISOString().split('T')[0] : undefined
+          }
+          setValue={(value) => setFilter(new Date(value))}
+        />
+      )}
+      {column.type === 'pill' && <Select options={[]} />}
       <div className={style.actions}>
-        <Button secondary>Reset</Button>
+        <Button secondary onClick={() => setFilter(undefined)}>
+          Reset
+        </Button>
         <Button>Filter</Button>
       </div>
     </div>
   )
-}
-
-function StringFilterInput({ title }: { title: string }) {
-  return <Input placeholder={title} type='text' />
-}
-
-function StringFilterSelect() {
-  return <Select options={[]} />
-}
-
-function NumberFilterInput({ title }: { title: string }) {
-  return <Input placeholder={title} type='number' />
-}
-
-function NumberFilterSelect() {
-  return <Select options={[]} />
-}
-
-function DateFilter({ title }: { title: string }) {
-  return <Input placeholder={title} type='date' />
-}
-
-function PillFilter() {
-  return <Select options={[]} />
 }

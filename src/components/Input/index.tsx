@@ -7,14 +7,18 @@ export default function Input({
   type,
   placeholder,
   className,
+  value,
+  setValue,
 }: {
   type: React.HTMLInputTypeAttribute
   placeholder: string
   className?: string
+  value?: string
+  setValue?: (value: string) => void
 }) {
   const [showPassword, setShowPassword] = useState(false)
 
-  // TODO add material icon for search
+  const [ownValue, setOwnValue] = useState('')
 
   return (
     <div
@@ -25,6 +29,8 @@ export default function Input({
       <input
         type={type === 'password' && showPassword ? 'text' : type}
         placeholder={placeholder}
+        value={value || ownValue}
+        onChange={(e) => (setValue || setOwnValue)(e.target.value)}
       />
       {type === 'password' && (
         <button

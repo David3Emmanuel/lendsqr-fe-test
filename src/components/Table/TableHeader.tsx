@@ -1,12 +1,20 @@
 'use client'
 
-import { Column, Row } from './types'
+import { Column, Row, TableValue } from './types'
 import style from './style.module.scss'
 import Image from 'next/image'
 import { useState } from 'react'
 import { Filter } from './Filter'
 
-export function TableHeader<T extends Row>({ column }: { column: Column<T> }) {
+export function TableHeader<T extends Row>({
+  column,
+  filter,
+  setFilter,
+}: {
+  column: Column<T>
+  filter: TableValue
+  setFilter: (value?: TableValue) => void
+}) {
   const [showFilter, setShowFilter] = useState(false)
 
   return (
@@ -22,7 +30,12 @@ export function TableHeader<T extends Row>({ column }: { column: Column<T> }) {
         />
       </div>
       {showFilter && (
-        <Filter column={column} hideFilter={() => setShowFilter(false)} />
+        <Filter
+          column={column}
+          hideFilter={() => setShowFilter(false)}
+          filter={filter}
+          setFilter={setFilter}
+        />
       )}
     </div>
   )
