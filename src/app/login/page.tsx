@@ -30,8 +30,12 @@ export default async function LoginPage() {
           <h1>Welcome!</h1>
           <p>Enter details to login.</p>
           <div className={style.inputGroup}>
-            <Input type='text' placeholder='Email' />
-            <Input type='password' placeholder='Password' />
+            <Input className={style.Input} type='text' placeholder='Email' />
+            <Input
+              className={style.Input}
+              type='password'
+              placeholder='Password'
+            />
             <p className={style.forgotPassword}>Forgot your password?</p>
           </div>
           <Button type='submit'>LOG IN</Button>
