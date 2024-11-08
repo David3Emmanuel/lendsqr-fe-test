@@ -1,11 +1,11 @@
 'use client'
 
-import React, { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 const TabContext = createContext<
   | {
-      activeTab: string
-      setActiveTab: (tab: string) => void
+      defaultTab?: string
+      setDefaultTab: (defaultTab?: string) => void
       defaultTabClassName?: string
       setDefaultTabClassName: (className?: string) => void
       activeTabClassName?: string
@@ -15,18 +15,19 @@ const TabContext = createContext<
 >(undefined)
 
 export function TabProvider({ children }: { children: React.ReactNode }) {
-  const [activeTab, setActiveTab] = useState<string>('')
+  const [defaultTab, setDefaultTab] = useState<string | undefined>(undefined)
   const [defaultTabClassName, setDefaultTabClassName] = useState<
     string | undefined
   >()
   const [activeTabClassName, setActiveTabClassName] = useState<
     string | undefined
   >()
+
   return (
     <TabContext.Provider
       value={{
-        activeTab,
-        setActiveTab,
+        defaultTab,
+        setDefaultTab,
         defaultTabClassName,
         setDefaultTabClassName,
         activeTabClassName,

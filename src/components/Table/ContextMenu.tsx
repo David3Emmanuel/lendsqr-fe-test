@@ -21,8 +21,6 @@ export function ContextMenu({
 
   useEffect(() => {
     const handleMouseLeave = (event: MouseEvent) => {
-      // TODO add safe area
-
       if (menuRef.current) {
         const rect = menuRef.current.getBoundingClientRect()
         const isOutside =

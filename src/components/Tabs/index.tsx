@@ -2,6 +2,8 @@
 
 import React, { useEffect } from 'react'
 import { useTabContext } from './TabContext'
+import Link from 'next/link'
+import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 
 export function TabGroup({
   children,
@@ -16,19 +18,19 @@ export function TabGroup({
   activeTabClassName?: string
   defaultTab?: string
 }) {
-  const { setActiveTab, setDefaultTabClassName, setActiveTabClassName } =
+  const { setDefaultTab, setDefaultTabClassName, setActiveTabClassName } =
     useTabContext()
 
   useEffect(() => {
+    setDefaultTab(defaultTab)
     setDefaultTabClassName(defaultTabClassName)
     setActiveTabClassName(activeTabClassName)
-    setActiveTab(defaultTab || '')
   }, [
     activeTabClassName,
     defaultTab,
     defaultTabClassName,
-    setActiveTab,
     setActiveTabClassName,
+    setDefaultTab,
     setDefaultTabClassName,
   ])
 
@@ -46,20 +48,30 @@ export function Tab({
   className?: string
   activeClassName?: string
 }) {
-  const { activeTab, setActiveTab, defaultTabClassName, activeTabClassName } =
-    useTabContext()
+  const { defaultTabClassName, activeTabClassName } = useTabContext()
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
 
-  // TODO add permalink to tab
+  const activeTab = searchParams.get('tab')
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault()
+    const params = new URLSearchParams(searchParams)
+    params.set('tab', tab)
+    router.replace(`${pathname}?${params.toString()}`)
+  }
 
   return (
-    <div
-      onClick={() => setActiveTab(tab)}
+    <Link
+      href={`?tab=${tab}`}
+      onClick={handleClick}
       className={`${className || defaultTabClassName} ${
         activeTab === tab ? activeClassName || activeTabClassName : ''
       }`.trim()}
     >
       {children}
-    </div>
+    </Link>
   )
 }
 
@@ -70,8 +82,9 @@ export function TabContent({
   children: React.ReactNode
   tab: string
 }) {
-  const { activeTab } = useTabContext()
-  return activeTab === tab ? children : null
+  const activeTab = useSearchParams().get('tab')
+  const { defaultTab } = useTabContext()
+  return (activeTab || defaultTab) === tab ? children : null
 }
 
 export { TabProvider } from './TabContext'
