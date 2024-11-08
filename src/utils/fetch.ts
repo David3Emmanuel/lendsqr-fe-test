@@ -21,6 +21,7 @@ export function useAllUsers() {
     } = useCachedFetch<UserData[]>(
         'https://api.json-generator.com/templates/5bz8P30FEwn8/data',
         options,
+        60 * 1000,
     )
 
     return { users: users ? processUserData(users) : [], loading, error }
