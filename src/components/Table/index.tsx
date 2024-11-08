@@ -21,7 +21,9 @@ export function Table<T extends Row>({
   baseHref?: string
   contextMenu?: ContextMenuItem[] | ((row: T) => ContextMenuItem[])
 }) {
-  const [filters, setFilters] = useState<{ [key: string]: TableValue }>({})
+  const [filters, setFilters] = useState<{
+    [key: string]: TableValue | undefined
+  }>({})
   const { filteredData } = useFilter(data, columns, filters, setFilters)
 
   const setFilter = (key: string, value?: TableValue) => {
@@ -33,8 +35,6 @@ export function Table<T extends Row>({
       return newFilters
     })
   }
-
-  // TODO indicate active filters
 
   return (
     <div className={style.Table}>

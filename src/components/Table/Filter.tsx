@@ -10,11 +10,13 @@ export function Filter<T extends Row>({
   hideFilter,
   filter,
   setFilter,
+  closeFilter,
   values,
 }: {
   column: Column<T>
   hideFilter: () => void
-  filter: TableValue
+  filter: TableValue | undefined
+  closeFilter: () => void
   setFilter: (value?: TableValue) => void
   values?: TableValue[]
 }) {
@@ -72,6 +74,11 @@ export function Filter<T extends Row>({
     }
   }, [hideFilter])
 
+  const handleReset = () => {
+    setFilter(undefined)
+    closeFilter()
+  }
+
   return (
     <div className={style.Filter} ref={filterRef}>
       <p>{column.title}</p>
@@ -101,7 +108,7 @@ export function Filter<T extends Row>({
           <Input
             placeholder={column.title}
             type='number'
-            value={filter.toString()}
+            value={filter?.toString()}
             setValue={(value: string) => setFilter(Number(value))}
           />
         ))}
@@ -123,10 +130,10 @@ export function Filter<T extends Row>({
         />
       )}
       <div className={style.actions}>
-        <Button secondary onClick={() => setFilter(undefined)}>
+        <Button secondary onClick={handleReset}>
           Reset
         </Button>
-        <Button>Filter</Button>
+        <Button onClick={closeFilter}>Filter</Button>
       </div>
     </div>
   )

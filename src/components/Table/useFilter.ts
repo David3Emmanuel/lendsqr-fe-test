@@ -5,7 +5,7 @@ export default function useFilter<T extends Row>(
     data: T[],
     columns: Column<T>[],
     filters: {
-        [key: string]: TableValue
+        [key: string]: TableValue | undefined
     },
     setFilters: (filters: { [key: string]: TableValue }) => void,
 ) {

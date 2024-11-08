@@ -13,7 +13,7 @@ export function TableHeader<T extends Row>({
   values,
 }: {
   column: Column<T>
-  filter: TableValue
+  filter?: TableValue
   setFilter: (value?: TableValue) => void
   values?: TableValue[]
 }) {
@@ -24,7 +24,7 @@ export function TableHeader<T extends Row>({
       <div className={style.innerTh}>
         {column.title}
         <Image
-          src='/filter.svg'
+          src={filter ? '/filter-active.svg' : '/filter.svg'}
           alt='Filter'
           width={16}
           height={16}
@@ -38,6 +38,7 @@ export function TableHeader<T extends Row>({
           filter={filter}
           setFilter={setFilter}
           values={values}
+          closeFilter={() => setShowFilter(false)}
         />
       )}
     </div>
