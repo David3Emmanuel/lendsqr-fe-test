@@ -42,9 +42,21 @@
     height: 60px;
     border-top: 1px solid rgba(color.$heading, 10%);
     display: table-row;
+    position: relative;
 
     &:first-child {
       border-top: none;
+    }
+
+    &:hover::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -30px;
+      width: calc(100% + 60px);
+      height: 100%;
+      background-color: rgba(black, 4%);
+      pointer-events: none;
     }
   }
 

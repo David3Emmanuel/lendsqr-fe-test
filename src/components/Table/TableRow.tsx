@@ -48,9 +48,13 @@ export function TableRow<T extends Row>({
         role='row'
         onContextMenu={handleContextMenu}
         className={style.tr}
-        style={{ position: contextMenu ? 'relative' : 'static' }}
       >
         {content}
+        {contextMenu && (
+          <div onClick={handleContextMenu} className={style.td}>
+            <i className='fa fa-ellipsis-v' aria-hidden='true'></i>
+          </div>
+        )}
       </_TableRow>
       {contextMenuVisible && contextMenu && (
         <ContextMenu
@@ -72,10 +76,9 @@ function _TableRow({
 }: {
   children: React.ReactNode
   href?: string
-  role: string
-  onContextMenu: (event: React.MouseEvent) => void
-  className: string
-  style: React.CSSProperties
+  role?: string
+  onContextMenu?: (event: React.MouseEvent) => void
+  className?: string
 }) {
   if (href)
     return (

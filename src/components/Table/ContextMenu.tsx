@@ -53,6 +53,20 @@ export function ContextMenu({
     }
   }, [onClose, isOpen])
 
+  useEffect(() => {
+    if (menuRef.current && position) {
+      const rect = menuRef.current.getBoundingClientRect()
+      const viewportWidth = window.innerWidth
+
+      if (rect.right > viewportWidth) {
+        menuRef.current.style.left = `${viewportWidth - rect.width}px`
+      }
+      if (rect.left < 0) {
+        menuRef.current.style.left = `0px`
+      }
+    }
+  }, [position, isOpen])
+
   return (
     <div
       ref={menuRef}
