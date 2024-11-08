@@ -6,9 +6,9 @@ import { TableRow } from './TableRow'
 import { TableHeader } from './TableHeader'
 import useFilter from './useFilter'
 import { useState } from 'react'
+import { Pagination, usePagination } from './Pagination'
 
 // TODO add sorting
-// TODO add pagination
 
 export function Table<T extends Row>({
   columns,
@@ -25,6 +25,7 @@ export function Table<T extends Row>({
     [key: string]: TableValue | undefined
   }>({})
   const { filteredData } = useFilter(data, columns, filters, setFilters)
+  const { paginatedData, paginationInfo } = usePagination(filteredData)
 
   const setFilter = (key: string, value?: TableValue) => {
     setFilters((prev) => {
@@ -37,42 +38,48 @@ export function Table<T extends Row>({
   }
 
   return (
-    <div className={style.Table}>
-      <div className={style.table} role='table'>
-        <div className={style.thead} role='rowgroup'>
-          <div className={style.tr} role='row'>
-            {columns.map((column) => {
-              const key = column.key.toString()
-              const _setFilter = (value?: TableValue) => setFilter(key, value)
-              const values = data.map((row) => row[key])
+    <>
+      <Pagination info={paginationInfo} />
+      <div className={style.Table}>
+        <div className={style.table} role='table'>
+          <div className={style.thead} role='rowgroup'>
+            <div className={style.tr} role='row'>
+              {columns.map((column) => {
+                const key = column.key.toString()
+                const _setFilter = (value?: TableValue) => setFilter(key, value)
+                const values = data.map((row) => row[key])
+                return (
+                  <TableHeader
+                    key={key}
+                    column={column}
+                    filter={filters[key]}
+                    setFilter={_setFilter}
+                    values={values}
+                  />
+                )
+              })}
+            </div>
+          </div>
+          <div className={style.tbody} role='rowgroup'>
+            {paginatedData.map((row, index) => {
+              const rowContextMenu =
+                typeof contextMenu === 'function'
+                  ? contextMenu(row)
+                  : contextMenu
               return (
-                <TableHeader
-                  key={key}
-                  column={column}
-                  filter={filters[key]}
-                  setFilter={_setFilter}
-                  values={values}
+                <TableRow
+                  key={index}
+                  row={row}
+                  columns={columns}
+                  baseHref={baseHref}
+                  contextMenu={rowContextMenu}
                 />
               )
             })}
           </div>
         </div>
-        <div className={style.tbody} role='rowgroup'>
-          {filteredData.map((row, index) => {
-            const rowContextMenu =
-              typeof contextMenu === 'function' ? contextMenu(row) : contextMenu
-            return (
-              <TableRow
-                key={index}
-                row={row}
-                columns={columns}
-                baseHref={baseHref}
-                contextMenu={rowContextMenu}
-              />
-            )
-          })}
-        </div>
       </div>
-    </div>
+      <Pagination info={paginationInfo} />
+    </>
   )
 }

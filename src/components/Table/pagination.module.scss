@@ -1,0 +1,67 @@
+@use "@/styles/font-sizes" as font;
+@use "@/styles/colors" as color;
+
+.Pagination {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px 0;
+
+  .count * {
+    font-size: font.$size-sm;
+  }
+
+  .count,
+  .pages {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .Select {
+    font-size: font.$size-sm;
+    width: 80px;
+    height: 30px;
+    color: color.$heading;
+    background-color: rgba(color.$heading, 10%);
+    font-weight: 500;
+    border: none;
+
+    select {
+      padding: 0 12px;
+    }
+  }
+
+  .pages {
+    gap: 20px;
+
+    button {
+      flex-shrink: 0;
+      opacity: 60%;
+      color: color.$primary;
+
+      &.currentPage {
+        opacity: 100%;
+      }
+    }
+
+    .prevNext {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 100%;
+      color: color.$heading;
+      border-radius: 4px;
+      background-color: rgba(color.$heading, 10%);
+      font-size: font.$size-xs;
+
+      &:disabled {
+        opacity: 60%;
+      }
+    }
+  }
+}
