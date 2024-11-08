@@ -14,7 +14,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 10px;
   margin: 2rem 0;
 
   .actions {
@@ -210,6 +211,10 @@
       background-color: rgba(color.$primary, 20%);
       margin: 0 30px;
     }
+  }
+
+  .titleRow {
+    justify-content: space-between;
   }
 }
 
