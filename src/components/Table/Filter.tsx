@@ -54,6 +54,12 @@ export function Filter<T extends Row>({
         ) : (
           <StringFilterInput title={column.title} />
         ))}
+      {column.type === 'number' &&
+        (column.filterMode === 'select' ? (
+          <NumberFilterSelect />
+        ) : (
+          <NumberFilterInput title={column.title} />
+        ))}
       {column.type === 'date' && <DateFilter title={column.title} />}
       {column.type === 'pill' && <PillFilter />}
       <div className={style.actions}>
@@ -72,7 +78,13 @@ function StringFilterSelect() {
   return <Select options={[]} />
 }
 
-// TODO add number filter
+function NumberFilterInput({ title }: { title: string }) {
+  return <Input placeholder={title} type='number' />
+}
+
+function NumberFilterSelect() {
+  return <Select options={[]} />
+}
 
 function DateFilter({ title }: { title: string }) {
   return <Input placeholder={title} type='date' />

@@ -4,14 +4,13 @@ import { Column, Row, ContextMenuItem } from './types'
 import style from './style.module.scss'
 import { TableRow } from './TableRow'
 import { TableHeader } from './TableHeader'
-import { useState } from 'react'
 
 // TODO add sorting and filtering
 // TODO add pagination
 
 export function Table<T extends Row>({
   columns,
-  data: originalData,
+  data,
   baseHref,
   contextMenu,
 }: {
@@ -20,8 +19,6 @@ export function Table<T extends Row>({
   baseHref?: string
   contextMenu?: ContextMenuItem[]
 }) {
-  const [data] = useState(originalData)
-
   return (
     <div className={style.Table}>
       <div className={style.table} role='table'>
