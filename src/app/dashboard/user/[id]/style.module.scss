@@ -94,10 +94,21 @@
 }
 
 .tier {
-  p:first-child {
+  p {
     font-size: font.$size-sm;
     margin-bottom: 10px;
     font-weight: 500;
+  }
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+
+    i {
+      color: color.$text-yellow;
+    }
   }
 }
 

@@ -16,8 +16,17 @@ export default function UserHeader({ user }: { user: UserData }) {
         <div className={style.divider} />
         <div className={style.tier}>
           <p>User&apos;s Tier</p>
-          {/* TODO add stars */}
-          <p>Tier {user.tier}</p>
+          <div>
+            <i
+              className={`fa-${user.tier >= 1 ? 'solid' : 'regular'} fa-star`}
+            />
+            <i
+              className={`fa-${user.tier >= 2 ? 'solid' : 'regular'} fa-star`}
+            />
+            <i
+              className={`fa-${user.tier >= 3 ? 'solid' : 'regular'} fa-star`}
+            />
+          </div>
         </div>
         <div className={style.divider} />
         <div className={style.bank}>
