@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { createHmac } from 'crypto'
 
 export function cacheData<T>(key: string, data: T, expiration: number) {
     const now = new Date().getTime()
@@ -33,16 +34,18 @@ export function useCachedFetch<T>(
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<Error | null>(null)
 
-    // TODO encrypt options
-
     useEffect(() => {
         const cacheKey = url + JSON.stringify(options)
+        const secretKey = process.env.NEXT_PUBLIC_SECRET_KEY || 'default_secret'
+        const hashKey = createHmac('sha256', secretKey)
+            .update(cacheKey)
+            .digest('hex')
 
         if (expiration <= 0) {
-            removeCachedData(cacheKey)
+            removeCachedData(hashKey)
         }
 
-        const cachedData = getCachedData<T>(cacheKey)
+        const cachedData = getCachedData<T>(hashKey)
         if (cachedData && expiration > 0) {
             console.log('Using cached data')
             setData(cachedData)
@@ -53,7 +56,7 @@ export function useCachedFetch<T>(
                 .then((response) => response.json())
                 .then((data: T) => {
                     setData(data)
-                    cacheData(cacheKey, data, expiration)
+                    cacheData(hashKey, data, expiration)
                 })
                 .catch((err) => setError(err as Error))
                 .finally(() => setLoading(false))
