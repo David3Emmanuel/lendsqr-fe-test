@@ -6,10 +6,54 @@ import { usePathname } from 'next/navigation'
 import style from './style.module.scss'
 import useSidebar from './useSidebar'
 import Button from '@/components/Button'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export function Sidebar({ children }: { children: React.ReactNode }) {
   const { open, isInactive, sidebarRef, setOpen } = useSidebar()
+  const sidebarChildRef = useRef<HTMLDivElement>(null)
+  const resizeHandleRef = useRef<HTMLDivElement>(null)
+
+  const [width, setWidth] = useState(283)
+
+  useEffect(() => {
+    const sidebarChild = sidebarChildRef.current
+    const resizeHandle = resizeHandleRef.current
+
+    if (!sidebarChild || !resizeHandle) return
+
+    let startX = 0
+
+    const handleResizeMouseDown = (e: MouseEvent) => {
+      startX = e.clientX
+      window.addEventListener('mousemove', handleMouseMove)
+      window.addEventListener('mouseup', handleMouseUp)
+      document.body.style.cursor = 'ew-resize'
+      document.body.style.userSelect = 'none'
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const dx = e.clientX - startX
+      setWidth((prev) => prev + dx)
+      startX = e.clientX
+      e.preventDefault()
+      e.stopPropagation()
+    }
+
+    const handleMouseUp = () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mouseup', handleMouseUp)
+      document.body.style.cursor = ''
+      document.body.style.userSelect = ''
+    }
+
+    resizeHandle.addEventListener('mousedown', handleResizeMouseDown)
+
+    return () => {
+      resizeHandle.removeEventListener('mousedown', handleResizeMouseDown)
+      window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mouseup', handleMouseUp)
+    }
+  }, [])
 
   return (
     <nav
@@ -24,7 +68,10 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
       >
         <i className={`fa-solid ${open ? 'fa-xmark' : 'fa-bars'}`} />
       </Button>
-      <div className={style.child}>{children}</div>
+      <div className={style.child} ref={sidebarChildRef} style={{ width }}>
+        {children}
+      </div>
+      <div className={style.resizeHandle} ref={resizeHandleRef} />
     </nav>
   )
 }

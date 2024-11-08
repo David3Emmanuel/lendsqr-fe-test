@@ -2,8 +2,6 @@
 @use "@/styles/colors" as color;
 @use "@/styles/breakpoints" as *;
 
-// TODO make sidebar resizable on desktop
-
 $transition-duration: 0.2s;
 
 .icon {
@@ -16,6 +14,7 @@ $transition-duration: 0.2s;
   box-shadow: 0 5px 20px 0 rgba(black, 4%);
   display: flex;
   transition: opacity 0.5s, transform 0.5s;
+  position: relative;
 
   .sidebarIcon {
     display: none;
@@ -25,8 +24,18 @@ $transition-duration: 0.2s;
     padding: 10px 0;
     height: 100%;
     overflow-y: auto;
-    width: 283px;
     scrollbar-width: thin;
+  }
+
+  .resizeHandle {
+    position: absolute;
+    top: 0;
+    right: -5px;
+    bottom: 0;
+    width: 5px;
+    background-color: hsl(0, 0%, 75%);
+    border-right: 1px solid hsl(0, 0%, 50%);
+    cursor: ew-resize;
   }
 }
 
@@ -164,10 +173,14 @@ $transition-duration: 0.2s;
     }
   }
 
+  .resizeHandle {
+    display: none;
+  }
+
   .Sidebar.open {
     & > .child {
       transform: scale(1);
-      width: 283px;
+      width: 283px !important;
       height: auto;
     }
 
