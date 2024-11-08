@@ -19,12 +19,19 @@ export default function useFilter<T extends Row>(
                 const filter = filters[key]
 
                 if (typeof filter === 'undefined') return true
+
                 if (typeof filter === 'string') {
-                    const stringValue = value as string
-                    const filterValue = filter as string
-                    return stringValue
-                        .toLowerCase()
-                        .includes(filterValue.toLowerCase())
+                    const filterValue = filter.toLowerCase()
+                    if (typeof value === 'string') {
+                        return value.toLowerCase().includes(filterValue)
+                    }
+                    if (
+                        typeof value === 'object' &&
+                        value !== null &&
+                        'text' in value
+                    ) {
+                        return value.text.toLowerCase().includes(filterValue)
+                    }
                 }
 
                 console.log('Invalid type found', value, filter)

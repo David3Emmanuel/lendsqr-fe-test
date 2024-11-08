@@ -10,10 +10,12 @@ export function TableHeader<T extends Row>({
   column,
   filter,
   setFilter,
+  values,
 }: {
   column: Column<T>
   filter: TableValue
   setFilter: (value?: TableValue) => void
+  values?: TableValue[]
 }) {
   const [showFilter, setShowFilter] = useState(false)
 
@@ -35,6 +37,7 @@ export function TableHeader<T extends Row>({
           hideFilter={() => setShowFilter(false)}
           filter={filter}
           setFilter={setFilter}
+          values={values}
         />
       )}
     </div>

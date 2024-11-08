@@ -42,12 +42,14 @@ export function Table<T extends Row>({
             {columns.map((column) => {
               const key = column.key.toString()
               const _setFilter = (value?: TableValue) => setFilter(key, value)
+              const values = data.map((row) => row[key])
               return (
                 <TableHeader
                   key={key}
                   column={column}
                   filter={filters[key]}
                   setFilter={_setFilter}
+                  values={values}
                 />
               )
             })}

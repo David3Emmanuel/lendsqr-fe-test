@@ -1,22 +1,45 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import Input from '@/components/Input'
 import Button from '@/components/Button'
 import Select from '@/components/Select'
 import style from './filter.module.scss'
-import { Column, Row, TableValue } from './types'
+import { Column, Pill, Row, TableValue } from './types'
 
 export function Filter<T extends Row>({
   column,
   hideFilter,
   filter,
   setFilter,
+  values,
 }: {
   column: Column<T>
   hideFilter: () => void
   filter: TableValue
   setFilter: (value?: TableValue) => void
+  values?: TableValue[]
 }) {
   const filterRef = useRef<HTMLDivElement>(null)
+  const selectValues = useMemo(() => {
+    if (!values) return []
+    const uniqueValuesMap = new Map<string, { value: string; label: string }>()
+    values.forEach((value) => {
+      if (typeof value === 'object') {
+        const pillValue = value as Pill
+        uniqueValuesMap.set(pillValue.text, {
+          value: pillValue.text,
+          label: pillValue.text,
+        })
+      } else {
+        uniqueValuesMap.set(value.toString(), {
+          value: value.toString(),
+          label: value.toString(),
+        })
+      }
+    })
+    const uniqueValues = Array.from(uniqueValuesMap.values())
+    console.log(uniqueValues)
+    return [{ value: '', label: '' }, ...uniqueValues]
+  }, [values])
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -54,7 +77,11 @@ export function Filter<T extends Row>({
       <p>{column.title}</p>
       {column.type === 'string' &&
         (column.filterMode === 'select' ? (
-          <Select options={[]} />
+          <Select
+            options={selectValues}
+            value={filter as string}
+            setValue={setFilter}
+          />
         ) : (
           <Input
             placeholder={column.title}
@@ -65,7 +92,11 @@ export function Filter<T extends Row>({
         ))}
       {column.type === 'number' &&
         (column.filterMode === 'select' ? (
-          <Select options={[]} />
+          <Select
+            options={selectValues}
+            value={filter as string}
+            setValue={setFilter}
+          />
         ) : (
           <Input
             placeholder={column.title}
@@ -84,7 +115,13 @@ export function Filter<T extends Row>({
           setValue={(value) => setFilter(new Date(value))}
         />
       )}
-      {column.type === 'pill' && <Select options={[]} />}
+      {column.type === 'pill' && (
+        <Select
+          options={selectValues}
+          value={filter as string}
+          setValue={setFilter}
+        />
+      )}
       <div className={style.actions}>
         <Button secondary onClick={() => setFilter(undefined)}>
           Reset
