@@ -3,9 +3,8 @@ import UserDetailsPageClient from './UserDetailsPageClient'
 
 export const metadata: Metadata = {
   title: 'User Details',
+  description: 'User details page',
 }
-
-// TODO set title client-side
 
 export default async function UserDetailsPage({
   params,

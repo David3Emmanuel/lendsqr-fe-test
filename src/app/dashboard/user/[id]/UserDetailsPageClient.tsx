@@ -53,8 +53,11 @@ export default function UserDetailsPageClient({ id }: { id: string }) {
       </div>
     )
 
+  document.title = `${user.username} | Dashboard`
+
   return (
     <div>
+      <meta name='description' content={`User details for ${user.username}`} />
       <BackToUsersLink />
       <div className={style.titleRow}>
         <h1>User Details</h1>
