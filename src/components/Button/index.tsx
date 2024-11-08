@@ -7,16 +7,20 @@ export default function Button({
   className,
   onClick,
   type,
+  secondary,
 }: {
   children: React.ReactNode
   className?: string
   onClick?: () => void
   type?: 'button' | 'submit' | 'reset'
+  secondary?: boolean
 }) {
   return (
     <button
       type={type}
-      className={`${style.Button} ${className || ''}`}
+      className={`${style.Button} ${secondary ? style.secondary : ''} ${
+        className || ''
+      }`}
       onClick={onClick}
     >
       {children}

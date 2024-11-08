@@ -15,4 +15,10 @@
   font-size: font.$size-sm;
   font-weight: 600;
   font-family: var(--font-avenir-next);
+
+  &.secondary {
+    background-color: transparent;
+    color: color.$primary;
+    border: 1px solid color.$primary;
+  }
 }

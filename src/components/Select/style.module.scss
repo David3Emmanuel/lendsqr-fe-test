@@ -1,0 +1,37 @@
+@use "@/styles/colors" as color;
+@use "@/styles/font-sizes" as font;
+
+.Select {
+  border: 2px solid rgba(color.$primary, 15%);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  position: relative;
+
+  select {
+    color: color.$primary;
+    flex: 1;
+    font-size: font.$size-sm;
+    padding: 10px 20px;
+    border: none;
+    appearance: none;
+    background: transparent;
+    outline: none;
+
+    &::placeholder {
+      color: rgba(color.$primary, 60%);
+    }
+  }
+
+  .icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: font.$size-sm;
+    color: color.$primary;
+  }
+}

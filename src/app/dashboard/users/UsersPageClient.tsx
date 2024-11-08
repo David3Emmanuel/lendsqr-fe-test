@@ -30,7 +30,12 @@ const statusColors: { [key: string]: PillColor } = {
 }
 
 const columns: Column<UserRow>[] = [
-  { key: 'organization', type: 'string', title: 'Organization' },
+  {
+    key: 'organization',
+    type: 'string',
+    title: 'Organization',
+    filterMode: 'select',
+  },
   { key: 'username', type: 'string', title: 'Username' },
   { key: 'email', type: 'string', title: 'Email' },
   { key: 'phone', type: 'string', title: 'Phone' },

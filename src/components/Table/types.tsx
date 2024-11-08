@@ -16,6 +16,7 @@ export interface Column<T extends Row> {
   key: keyof T
   type: ColumnType
   title: string
+  filterMode?: 'search' | 'select'
 }
 
 export type ContextMenuItem = {

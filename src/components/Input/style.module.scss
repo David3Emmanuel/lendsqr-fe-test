@@ -14,7 +14,7 @@
     color: color.$primary;
     flex: 1;
     font-size: font.$size-sm;
-    padding: 1rem;
+    padding: 10px 20px;
 
     &::placeholder {
       color: rgba(color.$primary, 60%);
