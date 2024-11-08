@@ -48,12 +48,13 @@ export function Tab({
   className?: string
   activeClassName?: string
 }) {
-  const { defaultTabClassName, activeTabClassName } = useTabContext()
+  const { defaultTab, defaultTabClassName, activeTabClassName } =
+    useTabContext()
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
 
-  const activeTab = searchParams.get('tab')
+  const activeTab = searchParams.get('tab') || defaultTab
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault()
