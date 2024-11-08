@@ -43,11 +43,26 @@ const columns: Column<UserRow>[] = [
   { key: 'status', type: 'pill', title: 'Status' },
 ]
 
-const contextMenu: ContextMenuItem[] = [
-  { title: 'View Details', action: '/dashboard/user', icon: 'eye' },
-  { title: 'Blacklist User', action: blacklistUserAction, icon: 'user-xmark' },
-  { title: 'Activate User', action: activateUserAction, icon: 'user-check' },
-]
+const contextMenu = (row: UserRow): ContextMenuItem[] => {
+  const menu: ContextMenuItem[] = [
+    { title: 'View Details', action: `/dashboard/user/${row.id}`, icon: 'eye' },
+  ]
+  if (row.status.text === 'Pending' || row.status.text === 'Blacklisted') {
+    menu.push({
+      title: 'Activate User',
+      action: activateUserAction,
+      icon: 'user-check',
+    })
+  }
+  if (row.status.text !== 'Blacklisted') {
+    menu.push({
+      title: 'Blacklist User',
+      action: blacklistUserAction,
+      icon: 'user-xmark',
+    })
+  }
+  return menu
+}
 
 export default function UsersPageClient() {
   const { users, loading, error } = useAllUsers()

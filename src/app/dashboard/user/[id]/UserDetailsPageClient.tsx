@@ -58,10 +58,14 @@ export default function UserDetailsPageClient({ id }: { id: string }) {
       <BackToUsersLink />
       <div className={style.titleRow}>
         <h1>User Details</h1>
-        {/* TODO show actions based on user status */}
         <div className={style.actions}>
-          <Button className={style.blacklist}>Blacklist User</Button>
-          <Button className={style.activate}>Activate User</Button>
+          <h3>Status: {user.status}</h3>
+          {(user.status === 'Pending' || user.status === 'Blacklisted') && (
+            <Button className={style.activate}>Activate User</Button>
+          )}
+          {user.status !== 'Blacklisted' && (
+            <Button className={style.blacklist}>Blacklist User</Button>
+          )}
         </div>
       </div>
       <TabProvider>

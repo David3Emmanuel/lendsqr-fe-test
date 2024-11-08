@@ -19,7 +19,7 @@ export function Table<T extends Row>({
   columns: Column<T>[]
   data: T[]
   baseHref?: string
-  contextMenu?: ContextMenuItem[]
+  contextMenu?: ContextMenuItem[] | ((row: T) => ContextMenuItem[])
 }) {
   const [filters, setFilters] = useState<{ [key: string]: TableValue }>({})
   const { filteredData } = useFilter(data, columns, filters, setFilters)
@@ -33,6 +33,8 @@ export function Table<T extends Row>({
       return newFilters
     })
   }
+
+  // TODO indicate active filters
 
   return (
     <div className={style.Table}>
@@ -56,15 +58,19 @@ export function Table<T extends Row>({
           </div>
         </div>
         <div className={style.tbody} role='rowgroup'>
-          {filteredData.map((row, index) => (
-            <TableRow
-              key={index}
-              row={row}
-              columns={columns}
-              baseHref={baseHref}
-              contextMenu={contextMenu}
-            />
-          ))}
+          {filteredData.map((row, index) => {
+            const rowContextMenu =
+              typeof contextMenu === 'function' ? contextMenu(row) : contextMenu
+            return (
+              <TableRow
+                key={index}
+                row={row}
+                columns={columns}
+                baseHref={baseHref}
+                contextMenu={rowContextMenu}
+              />
+            )
+          })}
         </div>
       </div>
     </div>
