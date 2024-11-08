@@ -8,7 +8,7 @@ export function SwitchOrganization() {
       icon='briefcase'
       title='Switch Organization'
       onClick={() => {}}
-      trailingIcon='down'
+      trailingIcon='chevron_down'
     />
   )
 }

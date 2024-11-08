@@ -28,10 +28,6 @@ $transition-duration: 0.2s;
     width: 283px;
     scrollbar-width: thin;
   }
-
-  &.inactive {
-    opacity: 0;
-  }
 }
 
 .SidebarAction,
@@ -124,6 +120,10 @@ $transition-duration: 0.2s;
     gap: 5px;
     flex-wrap: wrap;
     box-shadow: none;
+
+    &.inactive {
+      opacity: 0;
+    }
 
     & > .child {
       transform: scale(0);
