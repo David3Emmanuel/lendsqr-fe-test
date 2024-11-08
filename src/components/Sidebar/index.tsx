@@ -4,15 +4,34 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import style from './style.module.scss'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Button from '@/components/Button'
 
 export function Sidebar({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
-  // TODO hide sidebar onblur
+  const sidebarRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [sidebarRef])
 
   return (
-    <nav className={`${style.Sidebar} ${open ? style.open : ''}`}>
+    <nav
+      ref={sidebarRef}
+      className={`${style.Sidebar} ${open ? style.open : ''}`}
+    >
       <Button
         className={style.sidebarIcon}
         onClick={() => setOpen((prev) => !prev)}

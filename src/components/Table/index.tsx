@@ -7,7 +7,7 @@ import { TableHeader } from './TableHeader'
 import useFilter from './useFilter'
 import { useState } from 'react'
 
-// TODO add sorting and filtering
+// TODO add sorting
 // TODO add pagination
 
 export function Table<T extends Row>({
