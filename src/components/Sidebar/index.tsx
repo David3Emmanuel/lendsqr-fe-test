@@ -4,36 +4,22 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import style from './style.module.scss'
-import { useState, useEffect, useRef } from 'react'
+import useSidebar from './useSidebar'
 import Button from '@/components/Button'
+import { useState } from 'react'
 
 export function Sidebar({ children }: { children: React.ReactNode }) {
-  const [open, setOpen] = useState(false)
-  const sidebarRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        sidebarRef.current &&
-        !sidebarRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false)
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [sidebarRef])
+  const { open, isInactive, sidebarRef, setOpen } = useSidebar()
 
   return (
     <nav
       ref={sidebarRef}
-      className={`${style.Sidebar} ${open ? style.open : ''}`}
+      className={`${style.Sidebar} ${open ? style.open : ''} ${
+        isInactive ? style.inactive : ''
+      }`}
     >
       <Button
-        className={style.sidebarIcon}
+        className={`${style.sidebarIcon} ${isInactive ? style.inactive : ''}`}
         onClick={() => setOpen((prev) => !prev)}
       >
         <i className={`fa-solid ${open ? 'fa-xmark' : 'fa-bars'}`} />
