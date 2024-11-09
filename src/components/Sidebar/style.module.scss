@@ -36,6 +36,11 @@ $transition-duration: 0.2s;
     background-color: hsl(0, 0%, 75%);
     border-right: 1px solid hsl(0, 0%, 50%);
     cursor: ew-resize;
+    opacity: 0;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 
