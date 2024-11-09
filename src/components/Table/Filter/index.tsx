@@ -39,7 +39,6 @@ export default function Filter<T extends Row>({
       }
     })
     const uniqueValues = Array.from(uniqueValuesMap.values())
-    console.log(uniqueValues)
     return [{ value: '', label: '' }, ...uniqueValues]
   }, [values])
 
