@@ -30,6 +30,12 @@ export function TableRow<T extends Row>({
     setContextMenuPosition({ x: event.clientX, y: event.clientY })
   }
 
+  const handleContextMenuOnClick = (event: React.MouseEvent) => {
+    event.preventDefault()
+    setContextMenuVisible(true)
+    setContextMenuPosition({ x: event.clientX - 150, y: event.clientY })
+  }
+
   const handleCloseContextMenu = () => setContextMenuVisible(false)
 
   const content = columns.map((column) => (
@@ -51,7 +57,7 @@ export function TableRow<T extends Row>({
       >
         {content}
         {contextMenu && (
-          <div onClick={handleContextMenu} className={style.td}>
+          <div onClick={handleContextMenuOnClick} className={style.td}>
             <i className='fa fa-ellipsis-v' aria-hidden='true'></i>
           </div>
         )}
