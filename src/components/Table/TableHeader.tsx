@@ -4,7 +4,7 @@ import { Column, Row, TableValue } from './types'
 import style from './style.module.scss'
 import Image from 'next/image'
 import { useState } from 'react'
-import { Filter } from './Filter'
+import Filter from './Filter'
 
 export function TableHeader<T extends Row>({
   column,

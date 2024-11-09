@@ -2,10 +2,10 @@ import { useEffect, useMemo, useRef } from 'react'
 import Input from '@/components/Input'
 import Button from '@/components/Button'
 import Select from '@/components/Select'
-import style from './filter.module.scss'
-import { Column, Pill, Row, TableValue } from './types'
+import style from './style.module.scss'
+import { Column, Pill, Row, TableValue } from '../types'
 
-export function Filter<T extends Row>({
+export default function Filter<T extends Row>({
   column,
   hideFilter,
   filter,

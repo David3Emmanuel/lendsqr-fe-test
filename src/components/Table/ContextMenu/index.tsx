@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react'
-import { ContextMenuItem } from './types'
+import { ContextMenuItem } from '../types'
 import Link from 'next/link'
 
-import style from './context-menu.module.scss'
+import style from './style.module.scss'
 
-export function ContextMenu({
+export default function ContextMenu({
   menu,
   id,
   position,

@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Column, Row, TableValue } from './types'
+import { Column, Row, TableValue } from '../types'
 
 export default function useFilter<T extends Row>(
     data: T[],

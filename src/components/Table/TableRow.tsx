@@ -4,7 +4,7 @@ import { useState } from 'react'
 import TableData from './TableData'
 import { Column, ContextMenuItem, Row } from './types'
 import Link from 'next/link'
-import { ContextMenu } from './ContextMenu'
+import ContextMenu from './ContextMenu'
 
 import style from './style.module.scss'
 

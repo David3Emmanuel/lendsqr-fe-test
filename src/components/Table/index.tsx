@@ -4,9 +4,10 @@ import { Column, Row, ContextMenuItem, TableValue } from './types'
 import style from './style.module.scss'
 import { TableRow } from './TableRow'
 import { TableHeader } from './TableHeader'
-import useFilter from './useFilter'
+import useFilter from './Filter/useFilter'
 import { useState } from 'react'
-import { Pagination, usePagination } from './Pagination'
+import { Pagination } from './Pagination'
+import usePagination from './Pagination/usePagination'
 
 // TODO add sorting
 // TODO show/hide columns
