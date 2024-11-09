@@ -8,7 +8,7 @@ import {
   ContextMenuItem,
 } from '@/components/Table/types'
 import UsersWidgets from './widgets'
-import { Table } from '@/components/Table'
+import Table from '@/components/Table'
 import { useAllUsers } from '@/utils/fetch'
 import { blacklistUserAction, activateUserAction } from './actions'
 

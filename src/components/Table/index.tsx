@@ -12,7 +12,7 @@ import usePagination from './Pagination/usePagination'
 // TODO add sorting
 // TODO show/hide columns
 
-export function Table<T extends Row>({
+export default function Table<T extends Row>({
   columns,
   data,
   baseHref,

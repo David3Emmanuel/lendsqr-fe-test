@@ -79,7 +79,7 @@ export default function Filter<T extends Row>({
   }
 
   return (
-    <div className={style.Filter} ref={filterRef}>
+    <div className={style.Filter} ref={filterRef} data-testid={column.title}>
       <p>{column.title}</p>
       {column.type === 'string' &&
         (column.filterMode === 'select' ? (

@@ -25,7 +25,7 @@ export function TableHeader<T extends Row>({
         {column.title}
         <Image
           src={filter ? '/filter-active.svg' : '/filter.svg'}
-          alt='Filter'
+          alt={`Filter by ${column.title}`}
           width={16}
           height={16}
           onClick={() => setShowFilter(true)}
