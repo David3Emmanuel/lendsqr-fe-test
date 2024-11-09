@@ -1,14 +1,24 @@
+'use client'
+
+import useFloating from '@/utils/useFloating'
 import style from './style.module.scss'
 
 export default function Notifications() {
-  // TODO add notifications
+  const { parentRef, open, toggleOpen } = useFloating()
 
   return (
-    <div className={style.Notifications}>
-      <button>
+    <div
+      className={`${style.Notifications} ${open ? style.open : ''}`}
+      ref={parentRef}
+    >
+      <button aria-label='notifications' onClick={toggleOpen}>
         <i className='fa-regular fa-bell' />
       </button>
-      <div></div>
+      {open && (
+        <div className={style.child}>
+          <h2>No notifications</h2>
+        </div>
+      )}
     </div>
   )
 }
