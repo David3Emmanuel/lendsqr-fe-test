@@ -42,7 +42,11 @@ export default function Input({
         </button>
       )}
       {type === 'search' && (
-        <button type='submit' className={style.searchButton}>
+        <button
+          type='submit'
+          className={style.searchButton}
+          aria-label='search'
+        >
           <i className='fa-solid fa-magnifying-glass' />
         </button>
       )}

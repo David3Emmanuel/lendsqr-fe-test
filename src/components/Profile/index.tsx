@@ -15,7 +15,7 @@ export default function Profile({
         <Image src={profilePic} alt='Profile Picture' />
       </div>
       {expanded && <h2>John Doe</h2>}
-      <button className={style.dropdown}>
+      <button className={style.dropdown} aria-label='profile dropdown'>
         <i className='fa-solid fa-caret-down' />
       </button>
     </div>

@@ -25,7 +25,7 @@ export function WidgetIcon({
 }
 
 export function WidgetTitle({ children }: { children: React.ReactNode }) {
-  return <h3 className={style.WidgetTitle}>{children}</h3>
+  return <h2 className={style.WidgetTitle}>{children}</h2>
 }
 
 export function WidgetSummary({ children }: { children: React.ReactNode }) {

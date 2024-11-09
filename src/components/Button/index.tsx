@@ -8,15 +8,18 @@ export default function Button({
   onClick,
   type,
   secondary,
+  ariaLabel,
 }: {
   children: React.ReactNode
   className?: string
   onClick?: () => void
   type?: 'button' | 'submit' | 'reset'
   secondary?: boolean
+  ariaLabel?: string
 }) {
   return (
     <button
+      aria-label={ariaLabel}
       type={type}
       className={`${style.Button} ${secondary ? style.secondary : ''} ${
         className || ''

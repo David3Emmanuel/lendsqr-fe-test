@@ -8,11 +8,13 @@ export default function Select({
   className,
   value,
   setValue,
+  name,
 }: {
   options: { value: string; label: string }[]
   className?: string
   value?: string
   setValue?: (value: string) => void
+  name?: string
 }) {
   const [ownValue, setOwnValue] = useState<string>(options[0]?.value || '')
 
@@ -27,7 +29,12 @@ export default function Select({
 
   return (
     <div className={`${style.Select} ${className || ''}`}>
-      <select value={value || ownValue} onChange={handleChange}>
+      <select
+        name={name}
+        value={value || ownValue}
+        onChange={handleChange}
+        aria-label={name}
+      >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}

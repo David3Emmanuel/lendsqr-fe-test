@@ -65,6 +65,7 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
       <Button
         className={`${style.sidebarIcon} ${isInactive ? style.inactive : ''}`}
         onClick={toggleOpen}
+        ariaLabel='Toggle Sidebar'
       >
         <i className={`fa-solid ${open ? 'fa-xmark' : 'fa-bars'}`} />
       </Button>

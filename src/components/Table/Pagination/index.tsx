@@ -15,6 +15,7 @@ export function Pagination({ info }: { info: PaginationInfo }) {
       <div className={style.count}>
         <span>Showing</span>
         <Select
+          name='count'
           className={style.Select}
           options={info.countOptions}
           value={info.count.toString()}
@@ -25,6 +26,7 @@ export function Pagination({ info }: { info: PaginationInfo }) {
       <div className={style.pages}>
         <button
           className={style.prevNext}
+          aria-label='previous page'
           onClick={() => info.setPage(Math.max(1, currentPage - 1))}
           disabled={currentPage === 1}
         >
@@ -47,6 +49,7 @@ export function Pagination({ info }: { info: PaginationInfo }) {
         )}
         <button
           className={style.prevNext}
+          aria-label='next page'
           onClick={() => info.setPage(Math.min(numberOfPages, currentPage + 1))}
           disabled={currentPage === numberOfPages}
         >
