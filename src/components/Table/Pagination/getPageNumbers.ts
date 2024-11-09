@@ -3,9 +3,9 @@ export default function getPageNumbers(
     currentPage: number,
     numberOfPages: number,
 ): number[] {
-    const numberOfPrefixedPages = 2
-    const numberOfSuffixedPages = 2
-    const maxNumberOfPagesOnEachSide = 2
+    const numberOfPrefixedPages = 1
+    const numberOfSuffixedPages = 1
+    const maxNumberOfPagesOnEachSide = 1
 
     const pageNumbers = []
     if (numberOfPages <= maxNumberOfPagesOnEachSide * 2 + 1) {
