@@ -51,3 +51,7 @@ Mock API: [JSON generator](https://next.json-generator.com/) was used to simulat
    ```bash
    npm run test:watch
    ```
+
+5. **Continuous Integration**: This project uses GitHub Actions for continuous integration. The workflow is defined in `.github/workflows/node.js.yml` and runs tests on push and pull request events for the `main` branch.
+
+   Ensure your repository is connected to GitHub and the workflow file is present in the correct directory.
