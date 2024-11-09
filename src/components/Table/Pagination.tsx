@@ -76,10 +76,18 @@ export function usePagination<T extends Row>(
   const [count, _setCount] = useState(10)
   const numberOfPages = Math.ceil(total / count)
 
-  const countOptions = [10, 25, 50, 100].map((value) => ({
-    value: value.toString(),
-    label: value.toString(),
-  }))
+  const countOptions = [10, 25, 50, 100]
+    .filter((i) => i <= total)
+    .map((value) => ({
+      value: value.toString(),
+      label: value.toString(),
+    }))
+
+  if (countOptions.length === 0)
+    countOptions.push({
+      value: total.toString(),
+      label: total.toString(),
+    })
 
   const start = (page - 1) * count
   const end = start + count
