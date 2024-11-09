@@ -9,7 +9,6 @@ jest.mock('next/navigation', () => {
 
   const useSearchParams = () => {
     const router = useRouter()
-    console.log(router.query)
     return new URLSearchParams(router.query as Record<string, string>)
   }
 
