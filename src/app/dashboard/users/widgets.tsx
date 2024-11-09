@@ -6,28 +6,40 @@ import {
   WidgetSummary,
 } from '@/components/Widget'
 
-export default function UsersWidgets() {
+interface UsersWidgetsProps {
+  totalUsers: number
+  activeUsers: number
+  usersWithLoans: number
+  usersWithSavings: number
+}
+
+export default function UsersWidgets({
+  totalUsers,
+  activeUsers,
+  usersWithLoans,
+  usersWithSavings,
+}: UsersWidgetsProps) {
   return (
     <WidgetGroup>
       <Widget>
         <WidgetIcon icon='user-group' color='pink' />
         <WidgetTitle>Users</WidgetTitle>
-        <WidgetSummary>2,453</WidgetSummary>
+        <WidgetSummary>{totalUsers}</WidgetSummary>
       </Widget>
       <Widget>
         <WidgetIcon icon='users' color='blue' />
         <WidgetTitle>Active Users</WidgetTitle>
-        <WidgetSummary>2,453</WidgetSummary>
+        <WidgetSummary>{activeUsers}</WidgetSummary>
       </Widget>
       <Widget>
         <WidgetIcon icon='file-contract' color='orange' />
         <WidgetTitle>Users with Loans</WidgetTitle>
-        <WidgetSummary>12,453</WidgetSummary>
+        <WidgetSummary>{usersWithLoans}</WidgetSummary>
       </Widget>
       <Widget>
         <WidgetIcon icon='coins' color='red2' />
         <WidgetTitle>Users with Savings</WidgetTitle>
-        <WidgetSummary>102,453</WidgetSummary>
+        <WidgetSummary>{usersWithSavings}</WidgetSummary>
       </Widget>
     </WidgetGroup>
   )

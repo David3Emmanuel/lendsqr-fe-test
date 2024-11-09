@@ -95,10 +95,24 @@ export default function UsersPageClient() {
     },
   }))
 
+  const totalUsers = users.length
+  const activeUsers = users.filter((user) => user.status === 'Active').length
+  const usersWithLoans = users.filter(
+    (user) => user.employmentDetails.loanRepayment > 0,
+  ).length
+  const usersWithSavings = users.filter(
+    (user) => user.bankDetails.balance > 0,
+  ).length
+
   return (
     <div>
       <h1>Users</h1>
-      <UsersWidgets />
+      <UsersWidgets
+        totalUsers={totalUsers}
+        activeUsers={activeUsers}
+        usersWithLoans={usersWithLoans}
+        usersWithSavings={usersWithSavings}
+      />
       <Table
         columns={columns}
         data={rows}
