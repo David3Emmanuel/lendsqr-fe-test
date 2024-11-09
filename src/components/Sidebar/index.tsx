@@ -4,12 +4,12 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import style from './style.module.scss'
-import useSidebar from './useSidebar'
+import useFloating from '@/utils/useFloating'
 import Button from '@/components/Button'
 import { useEffect, useRef, useState } from 'react'
 
 export function Sidebar({ children }: { children: React.ReactNode }) {
-  const { open, isInactive, sidebarRef, setOpen } = useSidebar()
+  const { open, isInactive, parentRef, toggleOpen } = useFloating()
   const sidebarChildRef = useRef<HTMLDivElement>(null)
   const resizeHandleRef = useRef<HTMLDivElement>(null)
 
@@ -57,14 +57,14 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
 
   return (
     <nav
-      ref={sidebarRef}
+      ref={parentRef}
       className={`${style.Sidebar} ${open ? style.open : ''} ${
         isInactive ? style.inactive : ''
       }`}
     >
       <Button
         className={`${style.sidebarIcon} ${isInactive ? style.inactive : ''}`}
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={toggleOpen}
       >
         <i className={`fa-solid ${open ? 'fa-xmark' : 'fa-bars'}`} />
       </Button>

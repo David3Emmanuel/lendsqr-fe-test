@@ -1,16 +1,17 @@
+'use client'
 import { useState, useEffect, useRef } from 'react'
 
-export default function useSidebar() {
+export default function useFloating() {
     const [open, setOpen] = useState(false)
     const [isInactive, setIsInactive] = useState(false)
-    const sidebarRef = useRef<HTMLDivElement>(null)
+    const parentRef = useRef<HTMLDivElement>(null)
     const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (
-                sidebarRef.current &&
-                !sidebarRef.current.contains(event.target as Node)
+                parentRef.current &&
+                !parentRef.current.contains(event.target as Node)
             ) {
                 setOpen(false)
             }
@@ -42,7 +43,9 @@ export default function useSidebar() {
                 clearTimeout(timeoutRef.current)
             }
         }
-    }, [sidebarRef])
+    }, [parentRef])
 
-    return { open, isInactive, sidebarRef, setOpen }
+    const toggleOpen = () => setOpen((prev) => !prev)
+
+    return { open, isInactive, parentRef, toggleOpen }
 }
